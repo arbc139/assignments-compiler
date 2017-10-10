@@ -1,0 +1,79 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.IF
+token1.lexeme = "if"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 2
+
+token2.kind = Token.LEFTPAREN
+token2.lexeme = "("
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 3
+token2.src_pos.EndCol = 3
+
+token3.kind = Token.ID
+token3.lexeme = "a"
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 4
+token3.src_pos.EndCol = 4
+
+token4.kind = Token.EQ
+token4.lexeme = "=="
+token4.src_pos.StartLine = 1
+token4.src_pos.EndLine = 1
+token4.src_pos.StartCol = 5
+token4.src_pos.EndCol = 6
+
+token5.kind = Token.INTLITERAL
+token5.lexeme = "5"
+token5.src_pos.StartLine = 1
+token5.src_pos.EndLine = 1
+token5.src_pos.StartCol = 7
+token5.src_pos.EndCol = 7
+
+token6.kind = Token.RIGHTPAREN
+token6.lexeme = ")"
+token6.src_pos.StartLine = 1
+token6.src_pos.EndLine = 1
+token6.src_pos.StartCol = 8
+token6.src_pos.EndCol = 8
+
+token7.kind = Token.ID
+token7.lexeme = "a"
+token7.src_pos.StartLine = 1
+token7.src_pos.EndLine = 1
+token7.src_pos.StartCol = 9
+token7.src_pos.EndCol = 9
+
+token8.kind = Token.ASSIGN
+token8.lexeme = "="
+token8.src_pos.StartLine = 1
+token8.src_pos.EndLine = 1
+token8.src_pos.StartCol = 10
+token8.src_pos.EndCol = 10
+
+token9.kind = Token.ID
+token9.lexeme = "b"
+token9.src_pos.StartLine = 1
+token9.src_pos.EndLine = 1
+token9.src_pos.StartCol = 11
+token9.src_pos.EndCol = 11
+
+token10.kind = Token.SEMICOLON
+token10.lexeme = ";"
+token10.src_pos.StartLine = 1
+token10.src_pos.EndLine = 1
+token10.src_pos.StartCol = 12
+token10.src_pos.EndCol = 12
+
+token11.kind = Token.EOF
+token11.lexeme = "$"
+token11.src_pos.StartLine = 2
+token11.src_pos.EndLine = 2
+token11.src_pos.StartCol = 1
+token11.src_pos.EndCol = 1
+

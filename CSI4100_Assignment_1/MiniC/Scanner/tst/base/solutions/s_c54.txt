@@ -1,0 +1,10 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+ERROR: unterminated multi-line comment.
+token1.kind = Token.EOF
+token1.lexeme = "$"
+token1.src_pos.StartLine = 5
+token1.src_pos.EndLine = 5
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 1
+

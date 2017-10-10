@@ -1,0 +1,30 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.MINUS
+token1.lexeme = "-"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 1
+
+token2.kind = Token.OR
+token2.lexeme = "||"
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 2
+token2.src_pos.EndCol = 3
+
+token3.kind = Token.MINUS
+token3.lexeme = "-"
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 4
+token3.src_pos.EndCol = 4
+
+token4.kind = Token.EOF
+token4.lexeme = "$"
+token4.src_pos.StartLine = 2
+token4.src_pos.EndLine = 2
+token4.src_pos.StartCol = 1
+token4.src_pos.EndCol = 1
+

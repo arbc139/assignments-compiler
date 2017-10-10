@@ -1,0 +1,24 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.STRINGLITERAL
+token1.lexeme = "string"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 8
+
+ERROR: unterminated string literal
+token2.kind = Token.STRINGLITERAL
+token2.lexeme = ""
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 9
+token2.src_pos.EndCol = 9
+
+token3.kind = Token.EOF
+token3.lexeme = "$"
+token3.src_pos.StartLine = 2
+token3.src_pos.EndLine = 2
+token3.src_pos.StartCol = 1
+token3.src_pos.EndCol = 1
+

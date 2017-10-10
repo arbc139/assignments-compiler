@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+// Name and version (for the generated jar file):
+archivesBaseName = 'MiniC'
+version = 'Scanner'
+
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'MiniC Assignment 1',
+               'Implementation-Version': version,
+               'Main-Class': 'MiniC.MiniC' // Class with the main method.
+  }
+}
+
+compileJava {
+    //enable compilation in a separate daemon process:
+    options.fork = true
+
+    //enable incremental compilation:
+    options.incremental = true
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['MiniC']
+    }
+  }
+}
+
+// creates the gradle wrapper scripts for Unix and Windows:
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.2'
+}

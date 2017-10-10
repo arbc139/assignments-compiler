@@ -1,0 +1,11 @@
+int main()
+{
+  int a;
+  int b[20];
+  int max = b[1];
+
+  for (a=0;a<20;a=a + 1) {
+    b[a]=1;
+  }
+  return 2;  
+}

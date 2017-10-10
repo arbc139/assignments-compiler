@@ -1,0 +1,65 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.FLOATLITERAL
+token1.lexeme = "2.3"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 3
+
+token2.kind = Token.FLOATLITERAL
+token2.lexeme = "2."
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 5
+token2.src_pos.EndCol = 6
+
+token3.kind = Token.FLOATLITERAL
+token3.lexeme = ".2"
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 8
+token3.src_pos.EndCol = 9
+
+token4.kind = Token.FLOATLITERAL
+token4.lexeme = "2E1"
+token4.src_pos.StartLine = 1
+token4.src_pos.EndLine = 1
+token4.src_pos.StartCol = 11
+token4.src_pos.EndCol = 13
+
+token5.kind = Token.FLOATLITERAL
+token5.lexeme = "1e2"
+token5.src_pos.StartLine = 1
+token5.src_pos.EndLine = 1
+token5.src_pos.StartCol = 15
+token5.src_pos.EndCol = 17
+
+token6.kind = Token.FLOATLITERAL
+token6.lexeme = "2.3E+22"
+token6.src_pos.StartLine = 1
+token6.src_pos.EndLine = 1
+token6.src_pos.StartCol = 19
+token6.src_pos.EndCol = 25
+
+token7.kind = Token.FLOATLITERAL
+token7.lexeme = "2.3e-2"
+token7.src_pos.StartLine = 1
+token7.src_pos.EndLine = 1
+token7.src_pos.StartCol = 27
+token7.src_pos.EndCol = 32
+
+token8.kind = Token.FLOATLITERAL
+token8.lexeme = ".1E2"
+token8.src_pos.StartLine = 1
+token8.src_pos.EndLine = 1
+token8.src_pos.StartCol = 34
+token8.src_pos.EndCol = 37
+
+token9.kind = Token.EOF
+token9.lexeme = "$"
+token9.src_pos.StartLine = 2
+token9.src_pos.EndLine = 2
+token9.src_pos.StartCol = 1
+token9.src_pos.EndCol = 1
+

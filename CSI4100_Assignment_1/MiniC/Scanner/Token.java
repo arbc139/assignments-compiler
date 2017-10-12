@@ -13,7 +13,7 @@ final public class Token extends Object {
   public Token (int kind, String lexeme, SourcePos src_pos) {
     if (kind == Token.ID) {
        int index = firstKeyword;
-       boolean searching = true; 
+       boolean searching = true;
        while (searching) {
           int compare = tokenTable[index].compareTo(lexeme);
           if (compare == 0) {

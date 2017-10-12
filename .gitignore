@@ -2,3 +2,7 @@
 */.idea/
 *.iml
 */build/
+*/.classpath
+*/.project
+*/.settings/
+*/bin/

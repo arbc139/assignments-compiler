@@ -7,3 +7,8 @@ alkmc==123
 asdkl+123
 mcnsd-12
 vncmdsl>123
+bool      else for float if int return void while
+boole
+{[(;)]}
+true truef false falsef
+2.3 4. .4 2e2 2E4 2.2E+2 2.4e-2 .1E3

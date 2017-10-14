@@ -242,7 +242,7 @@ public final class Scanner {
       while (isDigit(currentChar)) { takeIt(); }
       return Token.FLOATLITERAL;
     }
-    while (isExponentBreakPoint(currentChar)) {
+    while (!isExponentBreakPoint(currentChar)) {
       untake();
     }
     return Token.ERROR;

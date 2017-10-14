@@ -398,6 +398,7 @@ public final class Scanner {
           currentColNr++;
           return;
         }
+        continue;
       }
       if (currentChar == '\n') {
         takeIt();

@@ -173,16 +173,16 @@ public final class Scanner {
         return Token.RIGHTBRACE;
       case '(':
         takeIt();
-        return Token.LEFTBRACKET;
+        return Token.LEFTPAREN;
       case ')':
         takeIt();
-        return Token.RIGHTBRACKET;
+        return Token.RIGHTPAREN;
       case '[':
         takeIt();
-        return Token.LEFTPAREN;
+        return Token.LEFTBRACKET;
       case ']':
         takeIt();
-        return Token.RIGHTPAREN;
+        return Token.RIGHTBRACKET;
       case ';':
         takeIt();
         return Token.SEMICOLON;

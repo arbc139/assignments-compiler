@@ -295,14 +295,27 @@ public final class Scanner {
     currentColNr++;
     state = ScannerState.TOKEN;
     while (currentChar != '"') {
+      if (currentChar == '\\') {
+        takeIt();
+        if (currentChar != 'n') {
+          takeIt();
+          System.out.println("ERROR: illegal escape sequence");
+          continue;
+        } else {
+          takeIt();
+          continue;
+        }
+      }
       if (currentChar == '\n') {
-        return Token.ERROR;
+        System.out.println("ERROR: unterminated string literal");
+        return Token.STRINGLITERAL;
       }
       if (currentChar == '\r') {
         takeIt();
         if (currentChar == '\n') {
           untake();
-          return Token.ERROR;
+          System.out.println("ERROR: unterminated string literal");
+          return Token.STRINGLITERAL;
         }
       }
       takeIt();

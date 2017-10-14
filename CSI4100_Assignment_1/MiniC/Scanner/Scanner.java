@@ -387,6 +387,7 @@ public final class Scanner {
   private void handleMultiComment() {
     while (true) {
       if (currentChar == '\u0000') {
+        System.out.println("ERROR: unterminated multi-line comment.");
         return;
       }
       if (currentChar == '*') {

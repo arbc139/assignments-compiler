@@ -290,7 +290,9 @@ public final class Scanner {
     if (currentChar != '"') {
       return Token.ERROR;
     }
+    state = ScannerState.NONE;
     takeIt();
+    state = ScannerState.TOKEN;
     while (currentChar != '"') {
       if (currentChar == '\n') {
         return Token.ERROR;
@@ -304,7 +306,9 @@ public final class Scanner {
       }
       takeIt();
     }
+    state = ScannerState.NONE;
     takeIt();
+    state = ScannerState.TOKEN;
     return Token.STRINGLITERAL;
   }
 

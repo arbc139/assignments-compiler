@@ -447,6 +447,7 @@ public final class Scanner {
         } else {
           untake();
           currentColNr--;
+          break;
         }
       }
       handleWhiteSpace();

@@ -186,6 +186,9 @@ public final class Scanner {
       case ';':
         takeIt();
         return Token.SEMICOLON;
+      case ',':
+        takeIt();
+        return Token.COMMA;
       default:
         takeIt();
         return Token.ERROR;

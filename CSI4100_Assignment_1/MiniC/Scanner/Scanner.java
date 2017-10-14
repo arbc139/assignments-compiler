@@ -1,5 +1,6 @@
 package MiniC.Scanner;
 
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 import MiniC.Scanner.SourceFile;
@@ -8,18 +9,19 @@ import MiniC.Scanner.Token;
 public final class Scanner {
 
   private enum ScannerState {
-    NORMAL, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT, STRING_LITERAL,
+    NONE, TOKEN, COMMENT,
   }
 
   private SourceFile sourceFile;
+  private Stack streamStack;
 
   private char currentChar;
   private boolean verbose;
   private StringBuffer currentLexeme;
-  private boolean currentlyScanningToken;
+  private StringBuffer commentLexeme;
+  private ScannerState state;
   private int currentLineNr;
   private int currentColNr;
-  private ScannerState state;
 
   private boolean isDigit(char c) {
     return Pattern.matches("\\d", String.valueOf(c));
@@ -46,15 +48,24 @@ public final class Scanner {
     return Pattern.matches("[\\.eE]", String.valueOf(c));
   }
 
+  private boolean isExponentBreakPoint(char c) {
+    return Pattern.matches("[eE]", String.valueOf(c));
+  }
+
+  private boolean isPlusMinus(char c) {
+    return Pattern.matches("[\\-\\+]", String.valueOf(c));
+  }
+
 ///////////////////////////////////////////////////////////////////////////////
 
   public Scanner(SourceFile source) {
     sourceFile = source;
+    streamStack = new Stack();
     currentChar = sourceFile.readChar();
     verbose = false;
     currentLineNr = 1;
     currentColNr= 1;
-    state = ScannerState.NORMAL;
+    state = ScannerState.NONE;
   }
 
   public void enableDebugging() {
@@ -67,82 +78,116 @@ public final class Scanner {
   // into the input stream).
 
   private void takeIt() {
-    if (currentlyScanningToken) {
+    if (state == ScannerState.TOKEN) {
       currentLexeme.append(currentChar);
+    } else if (state == ScannerState.COMMENT) {
+      commentLexeme.append(currentChar);
     }
-    currentChar = sourceFile.readChar();
+    if (streamStack.isEmpty()) {
+      currentChar = sourceFile.readChar();
+    } else {
+      currentChar = (char) streamStack.pop();
+    }
+  }
+
+  private void untake() {
+    streamStack.add(currentChar);
+    if (state == ScannerState.TOKEN) {
+      currentChar = currentLexeme.charAt(currentLexeme.length() - 1);
+      currentLexeme.deleteCharAt(currentLexeme.length() - 1);
+    } else if (state == ScannerState.COMMENT) {
+      currentChar = commentLexeme.charAt(commentLexeme.length() - 1);
+      commentLexeme.deleteCharAt(commentLexeme.length() - 1);
+    }
   }
 
   private int scanOperator() {
-    takeIt();
     switch (currentChar) {
       case '=':
+        takeIt();
         if (currentChar == '=') {
           takeIt();
           return Token.EQ;
         }
         return Token.ASSIGN;
       case '|':
+        takeIt();
         if (currentChar == '|') {
           takeIt();
           return Token.OR;
         }
         return Token.ERROR;
       case '&':
+        takeIt();
         if (currentChar == '&') {
           takeIt();
           return Token.AND;
         }
         return Token.ERROR;
       case '!':
+        takeIt();
         if (currentChar == '=') {
           takeIt();
           return Token.NOTEQ;
         }
         return Token.NOT;
       case '<':
+        takeIt();
         if (currentChar == '=') {
           takeIt();
           return Token.LESSEQ;
         }
         return Token.LESS;
       case '>':
+        takeIt();
         if (currentChar == '=') {
           takeIt();
           return Token.GREATEREQ;
         }
         return Token.GREATER;
       case '+':
+        takeIt();
         return Token.PLUS;
       case '-':
+        takeIt();
         return Token.MINUS;
       case '*':
+        takeIt();
         return Token.TIMES;
       case '/':
+        takeIt();
         return Token.DIV;
       default:
+        takeIt();
         return Token.ERROR;
     }
   }
 
   private int scanSepearator() {
-    takeIt();
     switch (currentChar) {
       case '{':
+        takeIt();
         return Token.LEFTBRACE;
       case '}':
+        takeIt();
         return Token.RIGHTBRACE;
       case '(':
+        takeIt();
         return Token.LEFTBRACKET;
       case ')':
+        takeIt();
         return Token.RIGHTBRACKET;
       case '[':
+        takeIt();
         return Token.LEFTPAREN;
       case ']':
+        takeIt();
         return Token.RIGHTPAREN;
       case ';':
+        takeIt();
         return Token.SEMICOLON;
       default:
+        takeIt();
         return Token.ERROR;
     }
   }
@@ -184,6 +229,51 @@ public final class Scanner {
     return getKeywordToken(currentLexeme.toString());
   }
 
+  private int scanExponent() {
+    if (!isExponentBreakPoint(currentChar)) {
+      return Token.ERROR;
+    }
+    takeIt();
+    if (isPlusMinus(currentChar)) {
+      takeIt();
+    }
+    if (isDigit(currentChar)) {
+      takeIt();
+      while (isDigit(currentChar)) { takeIt(); }
+      return Token.FLOATLITERAL;
+    }
+    while (isExponentBreakPoint(currentChar)) {
+      untake();
+    }
+    return Token.ERROR;
+  }
+
+  private int scanFloatFractionPart() {
+    if (currentChar == '.') {
+      takeIt();
+      if (isDigit(currentChar)) {
+        takeIt();
+        while (isDigit(currentChar)) { takeIt(); }
+        if (isExponentBreakPoint(currentChar)) {
+          scanExponent();
+        }
+        return Token.FLOATLITERAL;
+      } else if (isExponentBreakPoint(currentChar)) {
+        scanExponent();
+        return Token.FLOATLITERAL;
+      } else {
+        return Token.FLOATLITERAL;
+      }
+    } else if (isExponentBreakPoint(currentChar)) {
+      int exponentToken = scanExponent();
+      if (exponentToken == Token.ERROR) {
+        return Token.INTLITERAL;
+      }
+      return Token.FLOATLITERAL;
+    }
+    return Token.ERROR;
+  }
+
   private int scanIntFloatLiteral() {
     takeIt();
     while (isDigit(currentChar)) {
@@ -193,36 +283,122 @@ public final class Scanner {
       return Token.INTLITERAL;
     }
     // Fraction handling...
-    // TODO(totoro): Fraction 뒤에 핸들링 구현해야햄 알아찌 내 자신아? (하트)
+    return scanFloatFractionPart();
+  }
+
+  private int scanStringLiteral() {
+    if (currentChar != '"') {
+      return Token.ERROR;
+    }
+    takeIt();
+    while (currentChar != '"') {
+      if (currentChar == '\n') {
+        return Token.ERROR;
+      }
+      if (currentChar == '\r') {
+        takeIt();
+        if (currentChar == '\n') {
+          untake();
+          return Token.ERROR;
+        }
+      }
+      takeIt();
+    }
+    takeIt();
+    return Token.STRINGLITERAL;
   }
 
   private int scanToken() {
-    int tokenType = Token.ERROR;
     if (isOperator(currentChar)) {
-      tokenType = scanOperator();
+      return scanOperator();
     } else if (isSeperator(currentChar)) {
-      tokenType = scanSepearator();
+      return scanSepearator();
     } else if (isLetter(currentChar)) {
-      tokenType = scanIdentifierKeywordBoolLiteral();
+      return scanIdentifierKeywordBoolLiteral();
+    } else if (currentChar == '.') {
+      takeIt();
+      if (isDigit(currentChar)) {
+        takeIt();
+        while (isDigit(currentChar)) { takeIt(); }
+        if (isExponentBreakPoint(currentChar)) {
+          scanExponent();
+        }
+        return Token.FLOATLITERAL;
+      }
+      return Token.ERROR;
     } else if (isDigit(currentChar)) {
-      tokenType = scanIntFloatLiteral();
+      return scanIntFloatLiteral();
+    } else if (currentChar == '"') {
+      return scanStringLiteral();
     } else if (currentChar == '\u0000') {
       currentLexeme.append('$');
-      tokenType = Token.EOF;
+      return Token.EOF;
     } else {
       // Add code here for the remaining MiniC tokens...
       takeIt();
-      tokenType = Token.ERROR;
+      return Token.ERROR;
     }
-    return tokenType;
   }
 
-  public Token scan() {
-    Token currentToken;
-    SourcePos pos;
-    int kind;
+  private void handleSingleComment() {
+    while (true) {
+      if (currentChar == '\n') {
+        takeIt();
+        currentColNr = 1;
+        currentLineNr++;
+        return;
+      }
+      if (currentChar == '\r') {
+        takeIt();
+        if (currentChar == '\n') {
+          takeIt();
+          currentColNr = 1;
+          currentLineNr++;
+          return;
+        }
+        continue;
+      }
+      takeIt();
+    }
+  }
 
-    currentlyScanningToken = false;
+  private void handleMultiComment() {
+    while (true) {
+      if (currentChar == '\u0000') {
+        return;
+      }
+      if (currentChar == '*') {
+        takeIt();
+        currentColNr++;
+        if (currentChar == '/') {
+          takeIt();
+          currentColNr++;
+          return;
+        }
+      }
+      if (currentChar == '\n') {
+        takeIt();
+        currentColNr = 1;
+        currentLineNr++;
+        continue;
+      }
+      if (currentChar == '\r') {
+        takeIt();
+        currentColNr++;
+        if (currentChar == '\n') {
+          takeIt();
+          currentColNr = 1;
+          currentLineNr++;
+          continue;
+        }
+        continue;
+      }
+      takeIt();
+      currentColNr++;
+    }
+  }
+
+  private void handleWhiteSpace() {
     while (isWhiteSpace(currentChar)) {
       if (currentChar == '\n') {
         takeIt();
@@ -244,8 +420,39 @@ public final class Scanner {
       takeIt();
       currentColNr++;
     }
+  }
 
-    currentlyScanningToken = true;
+  public Token scan() {
+    Token currentToken;
+    SourcePos pos;
+    int kind;
+
+    state = ScannerState.NONE;
+    handleWhiteSpace();
+
+    state = ScannerState.COMMENT;
+    commentLexeme = new StringBuffer("");
+    while (currentChar == '/' && currentChar != '\u0000') {
+      if (currentChar == '/') {
+        takeIt();
+        currentColNr++;
+        if (currentChar == '/') {
+          takeIt();
+          currentColNr++;
+          handleSingleComment();
+        } else if (currentChar == '*') {
+          takeIt();
+          currentColNr++;
+          handleMultiComment();
+        } else {
+          untake();
+          currentColNr--;
+        }
+      }
+      handleWhiteSpace();
+    }
+
+    state = ScannerState.TOKEN;
     currentLexeme = new StringBuffer("");
     pos = new SourcePos();
     pos.StartLine = currentLineNr;
@@ -255,6 +462,7 @@ public final class Scanner {
     currentToken = new Token(kind, currentLexeme.toString(), pos);
     currentColNr += currentLexeme.toString().length() - 1;
     pos.EndCol = currentColNr;
+    currentColNr++;
     if (verbose) currentToken.print();
     return currentToken;
   }

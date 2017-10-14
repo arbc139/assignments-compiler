@@ -292,6 +292,7 @@ public final class Scanner {
     }
     state = ScannerState.NONE;
     takeIt();
+    currentColNr++;
     state = ScannerState.TOKEN;
     while (currentChar != '"') {
       if (currentChar == '\n') {
@@ -308,6 +309,7 @@ public final class Scanner {
     }
     state = ScannerState.NONE;
     takeIt();
+    currentColNr++;
     state = ScannerState.TOKEN;
     return Token.STRINGLITERAL;
   }

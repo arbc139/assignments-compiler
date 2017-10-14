@@ -28,7 +28,15 @@ public final class Scanner {
   }
 
   private boolean isLetter(char c) {
+    // TODO(dykim): Find a workaround better than this...
+    if (c == '[' || c == ']') {
+      return false;
+    }
     return Pattern.matches("[a-zA-z_]", String.valueOf(c));
+  }
+
+  private boolean isIdentifier(char c) {
+    return Pattern.matches("\\w", String.valueOf(c));
   }
 
   private boolean isWhiteSpace(char c) {
@@ -226,7 +234,7 @@ public final class Scanner {
 
   private int scanIdentifierKeywordBoolLiteral() {
     takeIt();
-    while (isLetter(currentChar) || isDigit(currentChar)) {
+    while (isIdentifier(currentChar)) {
       takeIt();
     }
     return getKeywordToken(currentLexeme.toString());

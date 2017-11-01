@@ -1,0 +1,2 @@
+void f(int i, bool b[10]) {  
+}

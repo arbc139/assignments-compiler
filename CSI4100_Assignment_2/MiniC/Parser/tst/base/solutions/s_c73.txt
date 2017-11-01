@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: ";" expected here 24..24, line 2.
+Compilation was unsuccessful.

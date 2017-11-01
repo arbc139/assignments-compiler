@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: "char" not expected after end of program 1..4, line 2.
+Compilation was unsuccessful.

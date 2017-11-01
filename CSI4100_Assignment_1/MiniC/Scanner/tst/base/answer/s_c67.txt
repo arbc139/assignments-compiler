@@ -1,0 +1,37 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.FLOATLITERAL
+token1.lexeme = "2.0"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 3
+
+token2.kind = Token.ID
+token2.lexeme = "e"
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 4
+token2.src_pos.EndCol = 4
+
+token3.kind = Token.FLOATLITERAL
+token3.lexeme = ".4"
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 5
+token3.src_pos.EndCol = 6
+
+token4.kind = Token.FLOATLITERAL
+token4.lexeme = "2.0"
+token4.src_pos.StartLine = 1
+token4.src_pos.EndLine = 1
+token4.src_pos.StartCol = 12
+token4.src_pos.EndCol = 14
+
+token5.kind = Token.EOF
+token5.lexeme = "$"
+token5.src_pos.StartLine = 2
+token5.src_pos.EndLine = 2
+token5.src_pos.StartCol = 1
+token5.src_pos.EndCol = 1
+

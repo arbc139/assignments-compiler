@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: "ggggg" not expected after end of program 1..5, line 1.
+Compilation was unsuccessful.

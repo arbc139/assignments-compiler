@@ -1,0 +1,7 @@
+void foo() {  
+  float y = 2.0e-2;
+}
+
+void foo() {  
+  float y = 2.0e-2;
+}

@@ -1,0 +1,3 @@
+int i = 0;
+bool f = false;
+int g  = f;

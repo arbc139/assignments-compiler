@@ -1,0 +1,2 @@
+void f(int a[2], float fff, bool b, bool a) {  
+}

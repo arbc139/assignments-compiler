@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: "int" not a statement 5..7, line 3.
+Compilation was unsuccessful.

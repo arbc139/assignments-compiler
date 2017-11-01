@@ -1,0 +1,13 @@
+void main() {  
+  int i;
+  i = 1;
+  put(i);
+  { int i;
+    i = 2;
+    put(i);
+    { int i;
+      i = 3;
+      put(i);
+    } 
+  } 
+}

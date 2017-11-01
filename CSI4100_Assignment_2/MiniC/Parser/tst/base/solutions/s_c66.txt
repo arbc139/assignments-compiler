@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: ";" not a primary expression 19..19, line 2.
+Compilation was unsuccessful.

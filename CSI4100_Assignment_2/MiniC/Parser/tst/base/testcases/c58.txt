@@ -1,0 +1,10 @@
+// maximum of two integers
+void main() {  
+  int i, j;
+  i = getInt();
+  j = getInt();
+  if (i >= j)
+    put(i);
+  else
+    put(j);
+}

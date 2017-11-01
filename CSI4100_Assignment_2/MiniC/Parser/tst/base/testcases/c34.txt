@@ -1,0 +1,7 @@
+void main() {  
+  if (i != 10) 
+     b = false;
+  else
+     f(1,2);
+}
+/* 2.0e+ */

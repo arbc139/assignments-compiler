@@ -1,0 +1,6 @@
+void main() {
+  while (x >= 1) {
+    int y = 1;
+    return;
+    }
+}

@@ -1,0 +1,6 @@
+void main() {  
+int i = 1;
+float f = 1.0;
+bool b = b;
+bool b = "string";
+}

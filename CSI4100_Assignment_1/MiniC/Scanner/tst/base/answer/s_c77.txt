@@ -1,0 +1,366 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.INT
+token1.lexeme = "int"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 3
+
+token2.kind = Token.ID
+token2.lexeme = "main"
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 5
+token2.src_pos.EndCol = 8
+
+token3.kind = Token.LEFTPAREN
+token3.lexeme = "("
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 9
+token3.src_pos.EndCol = 9
+
+token4.kind = Token.RIGHTPAREN
+token4.lexeme = ")"
+token4.src_pos.StartLine = 1
+token4.src_pos.EndLine = 1
+token4.src_pos.StartCol = 10
+token4.src_pos.EndCol = 10
+
+token5.kind = Token.LEFTBRACE
+token5.lexeme = "{"
+token5.src_pos.StartLine = 2
+token5.src_pos.EndLine = 2
+token5.src_pos.StartCol = 1
+token5.src_pos.EndCol = 1
+
+token6.kind = Token.INT
+token6.lexeme = "int"
+token6.src_pos.StartLine = 3
+token6.src_pos.EndLine = 3
+token6.src_pos.StartCol = 3
+token6.src_pos.EndCol = 5
+
+token7.kind = Token.ID
+token7.lexeme = "a"
+token7.src_pos.StartLine = 3
+token7.src_pos.EndLine = 3
+token7.src_pos.StartCol = 7
+token7.src_pos.EndCol = 7
+
+token8.kind = Token.SEMICOLON
+token8.lexeme = ";"
+token8.src_pos.StartLine = 3
+token8.src_pos.EndLine = 3
+token8.src_pos.StartCol = 8
+token8.src_pos.EndCol = 8
+
+token9.kind = Token.INT
+token9.lexeme = "int"
+token9.src_pos.StartLine = 4
+token9.src_pos.EndLine = 4
+token9.src_pos.StartCol = 3
+token9.src_pos.EndCol = 5
+
+token10.kind = Token.ID
+token10.lexeme = "b"
+token10.src_pos.StartLine = 4
+token10.src_pos.EndLine = 4
+token10.src_pos.StartCol = 7
+token10.src_pos.EndCol = 7
+
+token11.kind = Token.LEFTBRACKET
+token11.lexeme = "["
+token11.src_pos.StartLine = 4
+token11.src_pos.EndLine = 4
+token11.src_pos.StartCol = 8
+token11.src_pos.EndCol = 8
+
+token12.kind = Token.INTLITERAL
+token12.lexeme = "20"
+token12.src_pos.StartLine = 4
+token12.src_pos.EndLine = 4
+token12.src_pos.StartCol = 9
+token12.src_pos.EndCol = 10
+
+token13.kind = Token.RIGHTBRACKET
+token13.lexeme = "]"
+token13.src_pos.StartLine = 4
+token13.src_pos.EndLine = 4
+token13.src_pos.StartCol = 11
+token13.src_pos.EndCol = 11
+
+token14.kind = Token.SEMICOLON
+token14.lexeme = ";"
+token14.src_pos.StartLine = 4
+token14.src_pos.EndLine = 4
+token14.src_pos.StartCol = 12
+token14.src_pos.EndCol = 12
+
+token15.kind = Token.INT
+token15.lexeme = "int"
+token15.src_pos.StartLine = 5
+token15.src_pos.EndLine = 5
+token15.src_pos.StartCol = 3
+token15.src_pos.EndCol = 5
+
+token16.kind = Token.ID
+token16.lexeme = "max"
+token16.src_pos.StartLine = 5
+token16.src_pos.EndLine = 5
+token16.src_pos.StartCol = 7
+token16.src_pos.EndCol = 9
+
+token17.kind = Token.ASSIGN
+token17.lexeme = "="
+token17.src_pos.StartLine = 5
+token17.src_pos.EndLine = 5
+token17.src_pos.StartCol = 11
+token17.src_pos.EndCol = 11
+
+token18.kind = Token.ID
+token18.lexeme = "b"
+token18.src_pos.StartLine = 5
+token18.src_pos.EndLine = 5
+token18.src_pos.StartCol = 13
+token18.src_pos.EndCol = 13
+
+token19.kind = Token.LEFTBRACKET
+token19.lexeme = "["
+token19.src_pos.StartLine = 5
+token19.src_pos.EndLine = 5
+token19.src_pos.StartCol = 14
+token19.src_pos.EndCol = 14
+
+token20.kind = Token.INTLITERAL
+token20.lexeme = "1"
+token20.src_pos.StartLine = 5
+token20.src_pos.EndLine = 5
+token20.src_pos.StartCol = 15
+token20.src_pos.EndCol = 15
+
+token21.kind = Token.RIGHTBRACKET
+token21.lexeme = "]"
+token21.src_pos.StartLine = 5
+token21.src_pos.EndLine = 5
+token21.src_pos.StartCol = 16
+token21.src_pos.EndCol = 16
+
+token22.kind = Token.SEMICOLON
+token22.lexeme = ";"
+token22.src_pos.StartLine = 5
+token22.src_pos.EndLine = 5
+token22.src_pos.StartCol = 17
+token22.src_pos.EndCol = 17
+
+token23.kind = Token.FOR
+token23.lexeme = "for"
+token23.src_pos.StartLine = 7
+token23.src_pos.EndLine = 7
+token23.src_pos.StartCol = 3
+token23.src_pos.EndCol = 5
+
+token24.kind = Token.LEFTPAREN
+token24.lexeme = "("
+token24.src_pos.StartLine = 7
+token24.src_pos.EndLine = 7
+token24.src_pos.StartCol = 7
+token24.src_pos.EndCol = 7
+
+token25.kind = Token.ID
+token25.lexeme = "a"
+token25.src_pos.StartLine = 7
+token25.src_pos.EndLine = 7
+token25.src_pos.StartCol = 8
+token25.src_pos.EndCol = 8
+
+token26.kind = Token.ASSIGN
+token26.lexeme = "="
+token26.src_pos.StartLine = 7
+token26.src_pos.EndLine = 7
+token26.src_pos.StartCol = 9
+token26.src_pos.EndCol = 9
+
+token27.kind = Token.INTLITERAL
+token27.lexeme = "0"
+token27.src_pos.StartLine = 7
+token27.src_pos.EndLine = 7
+token27.src_pos.StartCol = 10
+token27.src_pos.EndCol = 10
+
+token28.kind = Token.SEMICOLON
+token28.lexeme = ";"
+token28.src_pos.StartLine = 7
+token28.src_pos.EndLine = 7
+token28.src_pos.StartCol = 11
+token28.src_pos.EndCol = 11
+
+token29.kind = Token.ID
+token29.lexeme = "a"
+token29.src_pos.StartLine = 7
+token29.src_pos.EndLine = 7
+token29.src_pos.StartCol = 12
+token29.src_pos.EndCol = 12
+
+token30.kind = Token.LESS
+token30.lexeme = "<"
+token30.src_pos.StartLine = 7
+token30.src_pos.EndLine = 7
+token30.src_pos.StartCol = 13
+token30.src_pos.EndCol = 13
+
+token31.kind = Token.INTLITERAL
+token31.lexeme = "20"
+token31.src_pos.StartLine = 7
+token31.src_pos.EndLine = 7
+token31.src_pos.StartCol = 14
+token31.src_pos.EndCol = 15
+
+token32.kind = Token.SEMICOLON
+token32.lexeme = ";"
+token32.src_pos.StartLine = 7
+token32.src_pos.EndLine = 7
+token32.src_pos.StartCol = 16
+token32.src_pos.EndCol = 16
+
+token33.kind = Token.ID
+token33.lexeme = "a"
+token33.src_pos.StartLine = 7
+token33.src_pos.EndLine = 7
+token33.src_pos.StartCol = 17
+token33.src_pos.EndCol = 17
+
+token34.kind = Token.ASSIGN
+token34.lexeme = "="
+token34.src_pos.StartLine = 7
+token34.src_pos.EndLine = 7
+token34.src_pos.StartCol = 18
+token34.src_pos.EndCol = 18
+
+token35.kind = Token.ID
+token35.lexeme = "a"
+token35.src_pos.StartLine = 7
+token35.src_pos.EndLine = 7
+token35.src_pos.StartCol = 19
+token35.src_pos.EndCol = 19
+
+token36.kind = Token.PLUS
+token36.lexeme = "+"
+token36.src_pos.StartLine = 7
+token36.src_pos.EndLine = 7
+token36.src_pos.StartCol = 21
+token36.src_pos.EndCol = 21
+
+token37.kind = Token.INTLITERAL
+token37.lexeme = "1"
+token37.src_pos.StartLine = 7
+token37.src_pos.EndLine = 7
+token37.src_pos.StartCol = 23
+token37.src_pos.EndCol = 23
+
+token38.kind = Token.RIGHTPAREN
+token38.lexeme = ")"
+token38.src_pos.StartLine = 7
+token38.src_pos.EndLine = 7
+token38.src_pos.StartCol = 24
+token38.src_pos.EndCol = 24
+
+token39.kind = Token.LEFTBRACE
+token39.lexeme = "{"
+token39.src_pos.StartLine = 7
+token39.src_pos.EndLine = 7
+token39.src_pos.StartCol = 26
+token39.src_pos.EndCol = 26
+
+token40.kind = Token.ID
+token40.lexeme = "b"
+token40.src_pos.StartLine = 8
+token40.src_pos.EndLine = 8
+token40.src_pos.StartCol = 5
+token40.src_pos.EndCol = 5
+
+token41.kind = Token.LEFTBRACKET
+token41.lexeme = "["
+token41.src_pos.StartLine = 8
+token41.src_pos.EndLine = 8
+token41.src_pos.StartCol = 6
+token41.src_pos.EndCol = 6
+
+token42.kind = Token.ID
+token42.lexeme = "a"
+token42.src_pos.StartLine = 8
+token42.src_pos.EndLine = 8
+token42.src_pos.StartCol = 7
+token42.src_pos.EndCol = 7
+
+token43.kind = Token.RIGHTBRACKET
+token43.lexeme = "]"
+token43.src_pos.StartLine = 8
+token43.src_pos.EndLine = 8
+token43.src_pos.StartCol = 8
+token43.src_pos.EndCol = 8
+
+token44.kind = Token.ASSIGN
+token44.lexeme = "="
+token44.src_pos.StartLine = 8
+token44.src_pos.EndLine = 8
+token44.src_pos.StartCol = 9
+token44.src_pos.EndCol = 9
+
+token45.kind = Token.INTLITERAL
+token45.lexeme = "1"
+token45.src_pos.StartLine = 8
+token45.src_pos.EndLine = 8
+token45.src_pos.StartCol = 10
+token45.src_pos.EndCol = 10
+
+token46.kind = Token.SEMICOLON
+token46.lexeme = ";"
+token46.src_pos.StartLine = 8
+token46.src_pos.EndLine = 8
+token46.src_pos.StartCol = 11
+token46.src_pos.EndCol = 11
+
+token47.kind = Token.RIGHTBRACE
+token47.lexeme = "}"
+token47.src_pos.StartLine = 9
+token47.src_pos.EndLine = 9
+token47.src_pos.StartCol = 3
+token47.src_pos.EndCol = 3
+
+token48.kind = Token.RETURN
+token48.lexeme = "return"
+token48.src_pos.StartLine = 10
+token48.src_pos.EndLine = 10
+token48.src_pos.StartCol = 3
+token48.src_pos.EndCol = 8
+
+token49.kind = Token.INTLITERAL
+token49.lexeme = "2"
+token49.src_pos.StartLine = 10
+token49.src_pos.EndLine = 10
+token49.src_pos.StartCol = 10
+token49.src_pos.EndCol = 10
+
+token50.kind = Token.SEMICOLON
+token50.lexeme = ";"
+token50.src_pos.StartLine = 10
+token50.src_pos.EndLine = 10
+token50.src_pos.StartCol = 11
+token50.src_pos.EndCol = 11
+
+token51.kind = Token.RIGHTBRACE
+token51.lexeme = "}"
+token51.src_pos.StartLine = 11
+token51.src_pos.EndLine = 11
+token51.src_pos.StartCol = 1
+token51.src_pos.EndCol = 1
+
+token52.kind = Token.EOF
+token52.lexeme = "$"
+token52.src_pos.StartLine = 12
+token52.src_pos.EndLine = 12
+token52.src_pos.StartCol = 1
+token52.src_pos.EndCol = 1
+

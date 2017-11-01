@@ -1,0 +1,4 @@
+void foo() {  
+  if(1 < a[b[2]])
+    return;
+}

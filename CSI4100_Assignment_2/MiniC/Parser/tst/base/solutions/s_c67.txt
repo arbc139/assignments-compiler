@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: "}" expected here 3..4, line 2.
+Compilation was unsuccessful.

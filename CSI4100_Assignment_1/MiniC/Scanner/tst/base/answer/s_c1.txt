@@ -1,0 +1,23 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.ID
+token1.lexeme = "hallo1"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 6
+
+token2.kind = Token.ID
+token2.lexeme = "hallo2"
+token2.src_pos.StartLine = 2
+token2.src_pos.EndLine = 2
+token2.src_pos.StartCol = 1
+token2.src_pos.EndCol = 6
+
+token3.kind = Token.EOF
+token3.lexeme = "$"
+token3.src_pos.StartLine = 3
+token3.src_pos.EndLine = 3
+token3.src_pos.StartCol = 1
+token3.src_pos.EndCol = 1
+

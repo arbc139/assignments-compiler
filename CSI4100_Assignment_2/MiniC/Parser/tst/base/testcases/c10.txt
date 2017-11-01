@@ -1,0 +1,4 @@
+int i;
+void j() { }
+int k;
+void main() { }

@@ -1,0 +1,5 @@
+void foo() {  
+  if (1) 
+    int i;
+    i = 100;
+}

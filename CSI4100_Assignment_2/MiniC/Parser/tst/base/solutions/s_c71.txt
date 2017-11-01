@@ -1,0 +1,4 @@
+********** MiniC Compiler **********
+Syntax Analysis ...
+ERROR: "ID" expected here 6..6, line 2.
+Compilation was unsuccessful.

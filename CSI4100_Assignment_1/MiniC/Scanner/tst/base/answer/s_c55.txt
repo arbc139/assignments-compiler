@@ -1,0 +1,86 @@
+********** MiniC Compiler **********
+Lexical Analysis ...
+token1.kind = Token.ID
+token1.lexeme = "id1"
+token1.src_pos.StartLine = 1
+token1.src_pos.EndLine = 1
+token1.src_pos.StartCol = 1
+token1.src_pos.EndCol = 3
+
+token2.kind = Token.ID
+token2.lexeme = "id2"
+token2.src_pos.StartLine = 1
+token2.src_pos.EndLine = 1
+token2.src_pos.StartCol = 5
+token2.src_pos.EndCol = 7
+
+token3.kind = Token.ID
+token3.lexeme = "Yonsei"
+token3.src_pos.StartLine = 1
+token3.src_pos.EndLine = 1
+token3.src_pos.StartCol = 9
+token3.src_pos.EndCol = 14
+
+token4.kind = Token.ID
+token4.lexeme = "_"
+token4.src_pos.StartLine = 1
+token4.src_pos.EndLine = 1
+token4.src_pos.StartCol = 16
+token4.src_pos.EndCol = 16
+
+token5.kind = Token.ID
+token5.lexeme = "__"
+token5.src_pos.StartLine = 1
+token5.src_pos.EndLine = 1
+token5.src_pos.StartCol = 18
+token5.src_pos.EndCol = 19
+
+token6.kind = Token.ID
+token6.lexeme = "___"
+token6.src_pos.StartLine = 1
+token6.src_pos.EndLine = 1
+token6.src_pos.StartCol = 21
+token6.src_pos.EndCol = 23
+
+token7.kind = Token.INTLITERAL
+token7.lexeme = "0"
+token7.src_pos.StartLine = 2
+token7.src_pos.EndLine = 2
+token7.src_pos.StartCol = 1
+token7.src_pos.EndCol = 1
+
+token8.kind = Token.ID
+token8.lexeme = "a"
+token8.src_pos.StartLine = 2
+token8.src_pos.EndLine = 2
+token8.src_pos.StartCol = 2
+token8.src_pos.EndCol = 2
+
+token9.kind = Token.ID
+token9.lexeme = "a2a"
+token9.src_pos.StartLine = 2
+token9.src_pos.EndLine = 2
+token9.src_pos.StartCol = 4
+token9.src_pos.EndCol = 6
+
+token10.kind = Token.ID
+token10.lexeme = "e2"
+token10.src_pos.StartLine = 2
+token10.src_pos.EndLine = 2
+token10.src_pos.StartCol = 8
+token10.src_pos.EndCol = 9
+
+token11.kind = Token.ID
+token11.lexeme = "E2"
+token11.src_pos.StartLine = 2
+token11.src_pos.EndLine = 2
+token11.src_pos.StartCol = 11
+token11.src_pos.EndCol = 12
+
+token12.kind = Token.EOF
+token12.lexeme = "$"
+token12.src_pos.StartLine = 3
+token12.src_pos.EndLine = 3
+token12.src_pos.StartCol = 1
+token12.src_pos.EndCol = 1
+

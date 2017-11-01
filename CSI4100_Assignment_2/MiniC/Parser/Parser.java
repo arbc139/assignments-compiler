@@ -114,7 +114,42 @@ public class Parser {
   //
   ///////////////////////////////////////////////////////////////////////////////
   public void parseParamsList() throws SyntaxError {
-    // to be completed by you...
+    parseParamsDecl();
+    while (currentToken.kind == Token.COMMA) {
+      accept(Token.COMMA);
+      parseParamsDecl();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseParamsDecl():
+  //
+  // ParamsList ::= (VOID|INT|BOOL|FLOAT) Declarator
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseParamsDecl() throws SyntaxError {
+    if (!isTypeSpecifier(currentToken.kind)) {
+      syntaxError("Type specifier expected here.");
+    }
+    acceptIt();
+    parseDeclarator();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseDeclarator():
+  //
+  // Declarator ::= ID ( "[" INTLITERAL "]" )?
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseDeclarator() throws SyntaxError {
+    accept(Token.ID);
+    if (currentToken.kind == Token.LEFTBRACKET) {
+      acceptIt();
+      accept(Token.INTLITERAL);
+      accept(Token.RIGHTBRACKET);
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -125,8 +160,25 @@ public class Parser {
   //
   ///////////////////////////////////////////////////////////////////////////////
   public void parseCompoundStmt() throws SyntaxError {
-    // to be completed by you...
+    accept(Token.LEFTBRACE);
+    while (isTypeSpecifier(currentToken)) {
+      acceptIt();
+      accept(Token.ID);
+      parseVarPart();
+    }
+    while (
+      currentToken == Token.LEFTBRACE ||  // CompoundStmt
+      currentToken == Token.IF ||  // IfStmt
+      currentToken == Token.WHILE ||  // WhileStmt
+      currentToken == Token.FOR ||  // ForStmt
+      currentToken == Token.RETURN ||  // return ...
+      currentToken == Token.ID) {  // ID ...
+      parseStmt();
+    }
+    accept(Token.RIGHTBRACE);
   }
+
+  // TODO(dykim): 여기서부터 쭉 뒤에 것들도 개발해야함.
 
   ///////////////////////////////////////////////////////////////////////////////
   //

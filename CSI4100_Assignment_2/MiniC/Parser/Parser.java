@@ -42,12 +42,14 @@ public class Parser {
   }
 
   boolean isTypeSpecifier(int token) {
-    if (token == Token.VOID || token == Token.INT  || token == Token.BOOL ||
-        token == Token.FLOAT) {
-      return true;
-    } else {
-      return false;
-    }
+    return token == Token.VOID || token == Token.INT  || token == Token.BOOL ||
+      token == Token.FLOAT;
+  }
+
+  boolean isRelational(int token) {
+    return token == Token.EQ || token == Token.NOTEQ || token == Token.LESSEQ ||
+      token == Token.LESS || token == Token.GREATER ||
+      token == Token.GREATEREQ;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -178,7 +180,240 @@ public class Parser {
     accept(Token.RIGHTBRACE);
   }
 
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseStmt():
+  //
+  // Stmt ::= CompoundStmt | IfStmt | WhileStmt | ForStmt |
+  //    "return" Expr? ";" |
+  //    "ID" (
+  //        "=" Expr ";" |
+  //        "[" Expr "]" "=" Expr ";" |
+  //        ArgList ";"
+  //    )
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseStmt() throws SyntaxError {
+    switch (currentToken) {
+      case Token.LEFTBRACE:
+        parseCompoundStmt();
+        break;
+      case Token.IF:
+        parseIfStmt();
+        break;
+      case Token.WHILE:
+        parseWhileStmt();
+        break;
+      case Token.FOR:
+        parseForStmt();
+        break;
+      case Token.RETURN:
+        accept(Token.RETURN);
+        if (/*TODO(dykim): Expr의 첫번째 character*/true) {
+          parseExpr();
+        }
+        accept(Token.SEMICOLON);
+        break;
+      case Token.ID:
+        accept(Token.ID);
+        if (currentToken == Token.ASSIGN) {
+          accept(Token.ASSIGN);
+          parseExpr();
+          accept(Token.SEMICOLON);
+        } else if (currentToken == Token.LEFTBRACKET) {
+          accept(Token.LEFTBRACKET);
+          parseExpr();
+          accept(Token.RIGHTBRACKET);
+          accept(Token.ASSIGN);
+          parseExpr();
+          accept(Token.SEMICOLON);
+        } else if (currentToken == Token.LEFTPAREN) {
+          accept(Token.LEFTPAREN);
+          parseArgList();
+          accept(Token.SEMICOLON);
+        } else {
+          syntaxError("expect = or [ or (");
+        }
+        break;
+      default:
+        syntaxError("expect = or [ or (");
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseIfStmt():
+  //
+  // IfStmt ::= "if" "(" Expr ")" Stmt ( "else" Stmt ) ?
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseIfStmt() throws SyntaxError {
+    accept(Token.IF);
+    accept(Token.LEFTBRACE);
+    parseExpr();
+    accept(Token.RIGHTBRACE);
+    parseStmt();
+    if (currentToken == Token.ELSE) {
+      accept(Token.ELSE);
+      parseStmt();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseWhileStmt():
+  //
+  // WhileStmt ::= "while" "(" Expr ")" Stmt
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseWhileStmt() throws SyntaxError {
+    accept(Token.WHILE);
+    accept(Token.LEFTBRACE);
+    parseExpr();
+    accept(Token.RIGHTBRACE);
+    parseStmt();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseForStmt():
+  //
+  // ForStmt ::= "for" "(" AssignExpr? ";" Expr? ";" AssignExpr? ")" Stmt
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseForStmt() throws SyntaxError {
+    accept(Token.FOR);
+    accept(Token.LEFTBRACE);
+    if (currentToken == Token.ID) {
+      parseAssignExpr();
+    }
+    accept(Token.SEMICOLON);
+    if (/*TODO(dykim): Expr의 첫번째 character*/true) {
+      parseExpr();
+    }
+    accept(Token.SEMICOLON);
+    if (currentToken == Token.ID) {
+      parseAssignExpr();
+    }
+    accept(Token.RIGHTBRACE);
+    parseStmt();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseAssignExpr():
+  //
+  // AssignExpr ::= "ID" "=" Expr
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseAssignExpr() throws SyntaxError {
+    accept(Token.ID);
+    accept(Token.ASSIGN);
+    parseExpr();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseExpr():
+  //
+  // Expr ::= AndExpr ( "||" AndExpr )*
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseExpr() throws SyntaxError {
+    parseAndExpr();
+    while (currentToken == Token.OR) {
+      parseAndExpr();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseAndExpr():
+  //
+  // AndExpr ::= RelationalExpr ( "&&" RelationalExpr )*
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseAndExpr() throws SyntaxError {
+    parseRelationalExpr();
+    while (currentToken == Token.AND) {
+      parseRelationalExpr();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseRelationalExpr():
+  //
+  // RelationalExpr ::= AddExpr (
+  //    "==" AddExpr |
+  //    "!=" AddExpr |
+  //    "<" AddExpr |
+  //    "<=" AddExpr |
+  //    ">" AddExpr |
+  //    ">=" AddExpr
+  // ) ?
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseRelationalExpr() throws SyntaxError {
+    parseAddExpr();
+    if (isRelational(currentToken)) {
+      acceptIt();
+      parseAddExpr();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseAddExpr():
+  //
+  // AddExpr ::= MultExpr ( ("+" | "-") MultExpr )*
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseAddExpr() throws SyntaxError {
+    parseMultExpr();
+    while (currentToken == Token.PLUS || currentToken == Token.MINUS) {
+      acceptIt();
+      parseMultExpr();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseMultExpr():
+  //
+  // MultExpr ::= UnaryExpr ( ("*" | "/") UnaryExpr )*
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseMultExpr() throws SyntaxError {
+    parseUnaryExpr();
+    while (currentToken == Token.TIMES || currentToken == Token.DIV) {
+      acceptIt();
+      parseUnaryExpr();
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseUnaryExpr():
+  //
+  // UnaryExpr ::= PrimaryExpr (
+  //   "+" UnaryExpr |
+  //   "-" UnaryExpr |
+  //   "!" UnaryExpr
+  // ) ?
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public void parseUnaryExpr() throws SyntaxError {
+    parsePrimaryExpr();
+    if (currentToken == Token.PLUS || currentToken == Token.MINUS ||
+        currentToken == Token.NOT) {
+      acceptIt();
+      parseUnaryExpr();
+    }
+  }
+
   // TODO(dykim): 여기서부터 쭉 뒤에 것들도 개발해야함.
+  // parsePrimaryExpr부터
 
   ///////////////////////////////////////////////////////////////////////////////
   //

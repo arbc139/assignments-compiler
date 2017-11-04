@@ -52,6 +52,14 @@ public class Parser {
       token == Token.GREATEREQ;
   }
 
+  boolean isExprFirst(int token) {
+    return token == Token.ID || token == Token.LEFTPAREN ||
+      token == Token.INTLITERAL || token == Token.BOOLLITERAL ||
+      token == Token.FLOATLITERAL || token == Token.STRINGLITERAL ||
+      token == Token.PLUS || token == Token.MINUS ||
+      token == Token.NOT;
+  }
+
   boolean isPrimaryExprFirst(int token) {
     return token == Token.ID || token == Token.LEFTPAREN ||
       token == Token.INTLITERAL || token == Token.BOOLLITERAL ||
@@ -215,7 +223,7 @@ public class Parser {
         break;
       case Token.RETURN:
         accept(Token.RETURN);
-        if (isPrimaryExprFirst(currentToken.kind)) {
+        if (isExprFirst(currentToken.kind)) {
           parseExpr();
         }
         accept(Token.SEMICOLON);
@@ -234,7 +242,6 @@ public class Parser {
           parseExpr();
           accept(Token.SEMICOLON);
         } else if (currentToken.kind == Token.LEFTPAREN) {
-          accept(Token.LEFTPAREN);
           parseArgList();
           accept(Token.SEMICOLON);
         } else {
@@ -255,9 +262,9 @@ public class Parser {
   ///////////////////////////////////////////////////////////////////////////////
   public void parseIfStmt() throws SyntaxError {
     accept(Token.IF);
-    accept(Token.LEFTBRACE);
+    accept(Token.LEFTPAREN);
     parseExpr();
-    accept(Token.RIGHTBRACE);
+    accept(Token.RIGHTPAREN);
     parseStmt();
     if (currentToken.kind == Token.ELSE) {
       accept(Token.ELSE);
@@ -274,9 +281,9 @@ public class Parser {
   ///////////////////////////////////////////////////////////////////////////////
   public void parseWhileStmt() throws SyntaxError {
     accept(Token.WHILE);
-    accept(Token.LEFTBRACE);
+    accept(Token.LEFTPAREN);
     parseExpr();
-    accept(Token.RIGHTBRACE);
+    accept(Token.RIGHTPAREN);
     parseStmt();
   }
 
@@ -289,19 +296,19 @@ public class Parser {
   ///////////////////////////////////////////////////////////////////////////////
   public void parseForStmt() throws SyntaxError {
     accept(Token.FOR);
-    accept(Token.LEFTBRACE);
+    accept(Token.LEFTPAREN);
     if (currentToken.kind == Token.ID) {
       parseAssignExpr();
     }
     accept(Token.SEMICOLON);
-    if (isPrimaryExprFirst(currentToken.kind)) {
+    if (isExprFirst(currentToken.kind)) {
       parseExpr();
     }
     accept(Token.SEMICOLON);
     if (currentToken.kind == Token.ID) {
       parseAssignExpr();
     }
-    accept(Token.RIGHTBRACE);
+    accept(Token.RIGHTPAREN);
     parseStmt();
   }
 
@@ -328,6 +335,7 @@ public class Parser {
   public void parseExpr() throws SyntaxError {
     parseAndExpr();
     while (currentToken.kind == Token.OR) {
+      acceptIt();
       parseAndExpr();
     }
   }
@@ -342,6 +350,7 @@ public class Parser {
   public void parseAndExpr() throws SyntaxError {
     parseRelationalExpr();
     while (currentToken.kind == Token.AND) {
+      acceptIt();
       parseRelationalExpr();
     }
   }
@@ -410,8 +419,10 @@ public class Parser {
   //
   ///////////////////////////////////////////////////////////////////////////////
   public void parseUnaryExpr() throws SyntaxError {
-    parsePrimaryExpr();
-    if (currentToken.kind == Token.PLUS || currentToken.kind == Token.MINUS ||
+    if (isPrimaryExprFirst(currentToken.kind)) {
+      parsePrimaryExpr();
+    } else if (currentToken.kind == Token.PLUS ||
+        currentToken.kind == Token.MINUS ||
         currentToken.kind == Token.NOT) {
       acceptIt();
       parseUnaryExpr();
@@ -467,7 +478,7 @@ public class Parser {
   ///////////////////////////////////////////////////////////////////////////////
   public void parseArgList() throws SyntaxError {
     accept(Token.LEFTPAREN);
-    if (isPrimaryExprFirst(currentToken.kind)) {
+    if (isExprFirst(currentToken.kind)) {
       parseArgs();
     }
     accept(Token.RIGHTPAREN);
@@ -520,7 +531,7 @@ public class Parser {
   //
   ///////////////////////////////////////////////////////////////////////////////
   public void parseInitializer() throws SyntaxError {
-    if (isPrimaryExprFirst(currentToken.kind)) {
+    if (isExprFirst(currentToken.kind)) {
       parseExpr();
     } else if (currentToken.kind == Token.LEFTBRACE) {
       accept(Token.LEFTBRACE);

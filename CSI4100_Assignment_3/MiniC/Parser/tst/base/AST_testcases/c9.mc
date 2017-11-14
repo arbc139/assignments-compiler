@@ -1,0 +1,4 @@
+// no statements:
+void main()
+{
+}

@@ -1,0 +1,31 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               IfStmt
+                  BinaryExpr
+                     VarExpr
+                        ID: i
+                     Operator: ==
+                     IntExpr
+                        IntLiteral: 22
+                  AssignStmt
+                     VarExpr
+                        ID: j
+                     IntExpr
+                        IntLiteral: 1
+                  CallStmt
+                     CallExpr
+                        ID: foo
+                        ActualParamSequence
+                           ActualParam
+                              IntExpr
+                                 IntLiteral: 123
+                           EmptyActualParam
+               EmptyStmt
+      EmptyDecl

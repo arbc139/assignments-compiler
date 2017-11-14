@@ -1,0 +1,72 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            DeclSequence
+               VarDecl
+                  IntType
+                  ID: i
+                  EmptyExpr
+               DeclSequence
+                  VarDecl
+                     IntType
+                     ID: tmp
+                     EmptyExpr
+                  DeclSequence
+                     VarDecl
+                        IntType
+                        ID: max
+                        CallExpr
+                           ID: ReadInt
+                           EmptyActualParam
+                     EmptyDecl
+            StmtSequence
+               ForStmt
+                  AssignExpr
+                     VarExpr
+                        ID: i
+                     IntExpr
+                        IntLiteral: 1
+                  BinaryExpr
+                     VarExpr
+                        ID: i
+                     Operator: <
+                     IntExpr
+                        IntLiteral: 100
+                  AssignExpr
+                     VarExpr
+                        ID: i
+                     BinaryExpr
+                        VarExpr
+                           ID: i
+                        Operator: +
+                        IntExpr
+                           IntLiteral: 1
+                  CompoundStmt
+                     EmptyDecl
+                     StmtSequence
+                        AssignStmt
+                           VarExpr
+                              ID: tmp
+                           CallExpr
+                              ID: ReadInt
+                              EmptyActualParam
+                        StmtSequence
+                           IfStmt
+                              BinaryExpr
+                                 VarExpr
+                                    ID: tmp
+                                 Operator: >
+                                 VarExpr
+                                    ID: max
+                              AssignStmt
+                                 VarExpr
+                                    ID: max
+                                 VarExpr
+                                    ID: tmp
+                           EmptyStmt
+               EmptyStmt
+      EmptyDecl

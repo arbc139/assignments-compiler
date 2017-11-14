@@ -1,0 +1,56 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: foo
+         FormalParamDeclSequence
+            FormalParamDecl
+               IntType
+               ID: i
+            EmptyFormalParamDecl
+         EmptyCompoundStmt
+      DeclSequence
+         FunDecl
+            VoidType
+            ID: main
+            EmptyFormalParamDecl
+            CompoundStmt
+               DeclSequence
+                  VarDecl
+                     IntType
+                     ID: i
+                     IntExpr
+                        IntLiteral: 17
+                  EmptyDecl
+               StmtSequence
+                  WhileStmt
+                     BinaryExpr
+                        VarExpr
+                           ID: i
+                        Operator: >
+                        IntExpr
+                           IntLiteral: 0
+                     CompoundStmt
+                        EmptyDecl
+                        StmtSequence
+                           CallStmt
+                              CallExpr
+                                 ID: foo
+                                 ActualParamSequence
+                                    ActualParam
+                                       VarExpr
+                                          ID: i
+                                    EmptyActualParam
+                           StmtSequence
+                              AssignStmt
+                                 VarExpr
+                                    ID: i
+                                 BinaryExpr
+                                    VarExpr
+                                       ID: i
+                                    Operator: -
+                                    IntExpr
+                                       IntLiteral: 1
+                              EmptyStmt
+                  EmptyStmt
+         EmptyDecl

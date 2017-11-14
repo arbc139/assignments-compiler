@@ -1,0 +1,55 @@
+Program
+   DeclSequence
+      FunDecl
+         IntType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               IfStmt
+                  BinaryExpr
+                     BinaryExpr
+                        VarExpr
+                           ID: a
+                        Operator: ==
+                        IntExpr
+                           IntLiteral: 1
+                     Operator: ||
+                     BinaryExpr
+                        BinaryExpr
+                           VarExpr
+                              ID: b
+                           Operator: ==
+                           IntExpr
+                              IntLiteral: 2
+                        Operator: &&
+                        UnaryExpr
+                           Operator: !
+                           BinaryExpr
+                              VarExpr
+                                 ID: a
+                              Operator: ==
+                              IntExpr
+                                 IntLiteral: 22
+                  AssignStmt
+                     VarExpr
+                        ID: a
+                     BinaryExpr
+                        VarExpr
+                           ID: a
+                        Operator: +
+                        IntExpr
+                           IntLiteral: 1
+                  ReturnStmt
+                     BinaryExpr
+                        VarExpr
+                           ID: b
+                        Operator: +
+                        IntExpr
+                           IntLiteral: 2
+               StmtSequence
+                  ReturnStmt
+                     EmptyExpr
+                  EmptyStmt
+      EmptyDecl

@@ -1,0 +1,6 @@
+// assignments 
+void main() {
+ a = 1; 
+ b = false;
+ c = 2 * a;
+}

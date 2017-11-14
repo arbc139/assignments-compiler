@@ -1,0 +1,40 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               WhileStmt
+                  BinaryExpr
+                     VarExpr
+                        ID: a
+                     Operator: >=
+                     VarExpr
+                        ID: b
+                  CompoundStmt
+                     DeclSequence
+                        VarDecl
+                           IntType
+                           ID: i
+                           EmptyExpr
+                        EmptyDecl
+                     StmtSequence
+                        AssignStmt
+                           VarExpr
+                              ID: y
+                           BinaryExpr
+                              BinaryExpr
+                                 VarExpr
+                                    ID: y
+                                 Operator: +
+                                 VarExpr
+                                    ID: i
+                              Operator: -
+                              IntExpr
+                                 IntLiteral: 2
+                        EmptyStmt
+               EmptyStmt
+      EmptyDecl

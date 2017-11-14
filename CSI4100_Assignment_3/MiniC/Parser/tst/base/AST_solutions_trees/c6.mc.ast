@@ -1,0 +1,8 @@
+Program
+   DeclSequence
+      FunDecl
+         IntType
+         ID: main
+         EmptyFormalParamDecl
+         EmptyCompoundStmt
+      EmptyDecl

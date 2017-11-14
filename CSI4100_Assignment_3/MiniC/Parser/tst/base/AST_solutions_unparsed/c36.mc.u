@@ -1,0 +1,12 @@
+void main()
+{
+   int i;
+   int tmp;
+   int max = ReadInt();
+   for (i = 1; (i < 100); i = (i + 1))
+   {
+      tmp = ReadInt();
+      if ((tmp > max))
+         max = tmp;
+   }
+}

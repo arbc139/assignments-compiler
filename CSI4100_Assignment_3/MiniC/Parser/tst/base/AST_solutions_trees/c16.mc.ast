@@ -1,0 +1,19 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               CallStmt
+                  CallExpr
+                     ID: foo
+                     ActualParamSequence
+                        ActualParam
+                           VarExpr
+                              ID: a
+                        EmptyActualParam
+               EmptyStmt
+      EmptyDecl

@@ -1,0 +1,7 @@
+// arrays as parts of expressions:
+
+void foo()
+{
+  a = b[10] + c;
+  b[11] = b[c-1+21-foo()];
+}

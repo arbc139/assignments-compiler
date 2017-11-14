@@ -1,0 +1,20 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: foo
+         EmptyFormalParamDecl
+         EmptyCompoundStmt
+      DeclSequence
+         FunDecl
+            IntType
+            ID: f
+            EmptyFormalParamDecl
+            EmptyCompoundStmt
+         DeclSequence
+            FunDecl
+               FloatType
+               ID: g
+               EmptyFormalParamDecl
+               EmptyCompoundStmt
+            EmptyDecl

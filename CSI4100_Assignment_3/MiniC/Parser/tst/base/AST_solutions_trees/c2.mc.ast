@@ -1,0 +1,7 @@
+Program
+   DeclSequence
+      VarDecl
+         IntType
+         ID: i
+         EmptyExpr
+      EmptyDecl

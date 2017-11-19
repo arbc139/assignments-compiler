@@ -7,7 +7,6 @@ import MiniC.Parser.SyntaxError;
 import MiniC.ErrorReporter;
 import MiniC.AstGen.*;
 
-
 public class Parser {
 
   private Scanner scanner;
@@ -125,7 +124,7 @@ public class Parser {
   ///////////////////////////////////////////////////////////////////////////////
 
   // parseProgDecls: recursive helper function to facilitate AST construction.
-  public Decl parseProgDecls () throws SyntaxError {
+  public Decl parseProgDecls() throws SyntaxError {
     if (!isTypeSpecifier(currentToken.kind)) {
       return new EmptyDecl(previousTokenPosition);
     }
@@ -136,13 +135,12 @@ public class Parser {
     if (currentToken.kind == Token.LEFTPAREN) {
       Decl newD = parseFunPart(T, Ident, pos);
       return new DeclSequence(newD, parseProgDecls(), previousTokenPosition);
-    } else {
-      DeclSequence Vars = parseVarPart(T, Ident);
-      DeclSequence VarsTail = Vars.GetRightmostDeclSequenceNode();
-      Decl RemainderDecls = parseProgDecls();
-      VarsTail.SetRightSubtree(RemainderDecls);
-      return Vars;
     }
+    DeclSequence Vars = parseVarPart(T, Ident);
+    DeclSequence VarsTail = Vars.GetRightmostDeclSequenceNode();
+    Decl RemainderDecls = parseProgDecls();
+    VarsTail.SetRightSubtree(RemainderDecls);
+    return Vars;
   }
 
   public Program parseProgram() throws SyntaxError {
@@ -207,8 +205,8 @@ public class Parser {
     if (isTypeSpecifier(currentToken.kind)) {
       T = parseTypeSpecifier();
     } else {
-      syntaxError("Type specifier instead of % expected",
-      Token.spell(currentToken.kind));
+      syntaxError(
+        "Type specifier instead of % expected", Token.spell(currentToken.kind));
     }
     D = parseDeclarator(T, pos);
     return D;
@@ -264,7 +262,7 @@ public class Parser {
         D, new EmptyDecl(previousTokenPosition), previousTokenPosition);
     }
     */
-    accept (Token.SEMICOLON);
+    accept(Token.SEMICOLON);
     return Seq;
   }
 

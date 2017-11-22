@@ -248,7 +248,7 @@ public class Parser {
   //
   // parseVarPart():
   //
-  // VarPart ::= ( "[" INTLITERAL "]" )?  ( "=" initializer ) ? ( "," init_decl)* ";"
+  // VarPart ::= ( "[" INTLITERAL "]" )?  ( "=" initializer ) ? ("," init_decl)* ";"
   //
   ///////////////////////////////////////////////////////////////////////////////
   public DeclSequence parseVarPart(Type T, ID Ident) throws SyntaxError {
@@ -266,10 +266,9 @@ public class Parser {
       E = parseInitializer();
     }
     D = new VarDecl(theType, Ident, E, previousTokenPosition);
-    // You can use the following code after implementatin of parseInitDecl():
     if (currentToken.kind == Token.COMMA) {
-      acceptIt();
-      Seq = new DeclSequence(D, parseInitDecl(T), previousTokenPosition);
+      Seq = new DeclSequence(
+        D, parseInitDeclList(theType), previousTokenPosition);
     } else {
       Seq = new DeclSequence(
         D, new EmptyDecl(previousTokenPosition), previousTokenPosition);
@@ -316,6 +315,22 @@ public class Parser {
     acceptIt();
     return new ExprSequence(
       parseExpr(), parseExprSequence(), previousTokenPosition);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  //
+  // parseInitDeclList():
+  //
+  // InitDeclList ::= ("," InitDecl)*
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+  public Decl parseInitDeclList(Type t) throws SyntaxError {
+    if (currentToken.kind != Token.COMMA) {
+      return new EmptyDecl(previousTokenPosition);
+    }
+    accept(Token.COMMA);
+    return new DeclSequence(
+      parseInitDecl(t), parseInitDeclList(t), previousTokenPosition);
   }
 
   ///////////////////////////////////////////////////////////////////////////////

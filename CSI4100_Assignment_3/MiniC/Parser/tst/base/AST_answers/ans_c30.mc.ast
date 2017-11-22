@@ -9,44 +9,22 @@ Program
             StmtSequence
                WhileStmt
                   ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: a
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: b
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
+                     CallExpr
+                        ID: a
                         EmptyExpr
-                     EmptyExpr
+                     CallExpr
+                        ID: b
+                        EmptyExpr
                   AssignStmt
                      VarExpr
                         ID: y
                      ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    CallExpr
-                                       ID: y
-                                       EmptyExpr
-                                    EmptyExpr
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 3
-                                       EmptyExpr
-                                    EmptyExpr
-                              EmptyExpr
+                        CallExpr
+                           ID: y
                            EmptyExpr
-                        EmptyExpr
+                        ExprSequence
+                           IntExpr
+                              IntLiteral: 3
+                           EmptyExpr
                EmptyStmt
       EmptyDecl

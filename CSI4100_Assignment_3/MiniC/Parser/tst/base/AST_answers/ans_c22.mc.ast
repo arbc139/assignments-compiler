@@ -11,26 +11,18 @@ Program
                   VarExpr
                      ID: b
                   ExprSequence
+                     CallExpr
+                        ID: i
+                        EmptyExpr
                      ExprSequence
                         ExprSequence
+                           IntExpr
+                              IntLiteral: 100
                            ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: i
-                                    EmptyExpr
+                              CallExpr
+                                 ID: k
                                  EmptyExpr
-                              ExprSequence
-                                 ExprSequence
-                                    IntExpr
-                                       IntLiteral: 100
-                                    ExprSequence
-                                       CallExpr
-                                          ID: k
-                                          EmptyExpr
-                                       EmptyExpr
-                                 EmptyExpr
-                           EmptyExpr
+                              EmptyExpr
                         EmptyExpr
-                     EmptyExpr
                EmptyStmt
       EmptyDecl

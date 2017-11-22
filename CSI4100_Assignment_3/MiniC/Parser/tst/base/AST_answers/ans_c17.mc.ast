@@ -12,47 +12,17 @@ Program
                      ID: foo
                      ActualParamSequence
                         ActualParam
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          CallExpr
-                                             ID: a
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                           CallExpr
+                              ID: a
                               EmptyExpr
                         ActualParamSequence
                            ActualParam
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             IntExpr
-                                                IntLiteral: 2
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                              IntExpr
+                                 IntLiteral: 2
                            ActualParamSequence
                               ActualParam
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             ExprSequence
-                                                FloatExpr
-                                                   FloatLiteral: 2.0
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
+                                 FloatExpr
+                                    FloatLiteral: 2.0
                               EmptyActualParam
                EmptyStmt
       EmptyDecl

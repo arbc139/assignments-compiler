@@ -10,53 +10,25 @@ Program
                AssignStmt
                   VarExpr
                      ID: a
-                  ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 IntExpr
-                                    IntLiteral: 1
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
-                     EmptyExpr
+                  IntExpr
+                     IntLiteral: 1
                StmtSequence
                   AssignStmt
                      VarExpr
                         ID: b
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    BoolExpr
-                                       BoolLiteral: false
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
+                     BoolExpr
+                        BoolLiteral: false
                   StmtSequence
                      AssignStmt
                         VarExpr
                            ID: c
                         ExprSequence
+                           IntExpr
+                              IntLiteral: 2
                            ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 2
-                                       ExprSequence
-                                          CallExpr
-                                             ID: a
-                                             EmptyExpr
-                                          EmptyExpr
-                                    EmptyExpr
+                              CallExpr
+                                 ID: a
                                  EmptyExpr
                               EmptyExpr
-                           EmptyExpr
                      EmptyStmt
       EmptyDecl

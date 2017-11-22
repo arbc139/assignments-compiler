@@ -26,43 +26,13 @@ Program
                      IntLiteral: 3
                ID: k
                ExprSequence
+                  IntExpr
+                     IntLiteral: 1
                   ExprSequence
+                     IntExpr
+                        IntLiteral: 2
                      ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 IntExpr
-                                    IntLiteral: 1
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
-                     EmptyExpr
-                  ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    IntExpr
-                                       IntLiteral: 2
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 3
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
+                        IntExpr
+                           IntLiteral: 3
                         EmptyExpr
             EmptyDecl

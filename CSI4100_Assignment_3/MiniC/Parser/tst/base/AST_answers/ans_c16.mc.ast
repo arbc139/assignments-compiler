@@ -12,18 +12,8 @@ Program
                      ID: foo
                      ActualParamSequence
                         ActualParam
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          CallExpr
-                                             ID: a
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                           CallExpr
+                              ID: a
                               EmptyExpr
                         EmptyActualParam
                EmptyStmt

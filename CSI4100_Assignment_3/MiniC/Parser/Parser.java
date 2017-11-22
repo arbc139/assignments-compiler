@@ -368,6 +368,10 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseAndExpr();
+    if (currentToken.kind != Token.OR) {
+      finish(pos);
+      return lExpr;
+    }
     Expr rExpr = parseAndExprList();
     finish(pos);
     return new ExprSequence(lExpr, rExpr, pos);
@@ -393,6 +397,10 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseRelationalExpr();
+    if (currentToken.kind != Token.AND) {
+      finish(pos);
+      return lExpr;
+    }
     Expr rExpr = parseRelationalExprList();
     finish(pos);
     return new ExprSequence(lExpr, rExpr, pos);
@@ -425,11 +433,12 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseAddExpr();
-    Expr rExpr = new EmptyExpr(previousTokenPosition);
-    if (isRelational(currentToken.kind)) {
-      acceptIt();
-      rExpr = parseAddExpr();
+    if (!isRelational(currentToken.kind)) {
+      finish(pos);
+      return lExpr;
     }
+    acceptIt();
+    Expr rExpr = parseAddExpr();
     finish(pos);
     return new ExprSequence(lExpr, rExpr, pos);
   }
@@ -445,6 +454,10 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseMultExpr();
+    if (currentToken.kind != Token.PLUS && currentToken.kind != Token.MINUS) {
+      finish(pos);
+      return lExpr;
+    }
     Expr rExpr = parseMultExprList();
     finish(pos);
     return new ExprSequence(lExpr, rExpr, pos);
@@ -470,6 +483,10 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseUnaryExpr();
+    if (currentToken.kind != Token.TIMES && currentToken.kind != Token.DIV) {
+      finish(pos);
+      return lExpr;
+    }
     Expr rExpr = parseUnaryExprList();
     finish(pos);
     return new ExprSequence(lExpr, rExpr, pos);

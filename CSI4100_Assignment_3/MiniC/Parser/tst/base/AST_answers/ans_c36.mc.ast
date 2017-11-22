@@ -19,131 +19,57 @@ Program
                      VarDecl
                         IntType
                         ID: max
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       CallExpr
-                                          ID: ReadInt
-                                          EmptyActualParam
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
+                        CallExpr
+                           ID: ReadInt
+                           EmptyActualParam
                      EmptyDecl
             StmtSequence
                ForStmt
                   AssignExpr
                      VarExpr
                         ID: i
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    IntExpr
-                                       IntLiteral: 1
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
+                     IntExpr
+                        IntLiteral: 1
                   ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: i
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           ExprSequence
-                              ExprSequence
-                                 IntExpr
-                                    IntLiteral: 100
-                                 EmptyExpr
-                              EmptyExpr
+                     CallExpr
+                        ID: i
                         EmptyExpr
-                     EmptyExpr
+                     IntExpr
+                        IntLiteral: 100
                   AssignExpr
                      VarExpr
                         ID: i
                      ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    CallExpr
-                                       ID: i
-                                       EmptyExpr
-                                    EmptyExpr
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 1
-                                       EmptyExpr
-                                    EmptyExpr
-                              EmptyExpr
+                        CallExpr
+                           ID: i
                            EmptyExpr
-                        EmptyExpr
+                        ExprSequence
+                           IntExpr
+                              IntLiteral: 1
+                           EmptyExpr
                   CompoundStmt
                      EmptyDecl
                      StmtSequence
                         AssignStmt
                            VarExpr
                               ID: tmp
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          CallExpr
-                                             ID: ReadInt
-                                             EmptyActualParam
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
+                           CallExpr
+                              ID: ReadInt
+                              EmptyActualParam
                         StmtSequence
                            IfStmt
                               ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             CallExpr
-                                                ID: tmp
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
-                                       ExprSequence
-                                          ExprSequence
-                                             CallExpr
-                                                ID: max
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
+                                 CallExpr
+                                    ID: tmp
                                     EmptyExpr
-                                 EmptyExpr
+                                 CallExpr
+                                    ID: max
+                                    EmptyExpr
                               AssignStmt
                                  VarExpr
                                     ID: max
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             ExprSequence
-                                                CallExpr
-                                                   ID: tmp
-                                                   EmptyExpr
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
+                                 CallExpr
+                                    ID: tmp
                                     EmptyExpr
                            EmptyStmt
                EmptyStmt

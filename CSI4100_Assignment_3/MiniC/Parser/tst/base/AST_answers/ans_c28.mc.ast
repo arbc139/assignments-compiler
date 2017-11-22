@@ -11,57 +11,25 @@ Program
                   AssignExpr
                      VarExpr
                         ID: j
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    IntExpr
-                                       IntLiteral: 1
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
+                     IntExpr
+                        IntLiteral: 1
                   ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: j
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           ExprSequence
-                              ExprSequence
-                                 IntExpr
-                                    IntLiteral: 100
-                                 EmptyExpr
-                              EmptyExpr
+                     CallExpr
+                        ID: j
                         EmptyExpr
-                     EmptyExpr
+                     IntExpr
+                        IntLiteral: 100
                   AssignExpr
                      VarExpr
                         ID: j
                      ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    CallExpr
-                                       ID: j
-                                       EmptyExpr
-                                    EmptyExpr
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 1
-                                       EmptyExpr
-                                    EmptyExpr
-                              EmptyExpr
+                        CallExpr
+                           ID: j
                            EmptyExpr
-                        EmptyExpr
+                        ExprSequence
+                           IntExpr
+                              IntLiteral: 1
+                           EmptyExpr
                   CompoundStmt
                      EmptyDecl
                      StmtSequence
@@ -69,23 +37,13 @@ Program
                            VarExpr
                               ID: y
                            ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          CallExpr
-                                             ID: y
-                                             EmptyExpr
-                                          EmptyExpr
-                                       ExprSequence
-                                          ExprSequence
-                                             IntExpr
-                                                IntLiteral: 3
-                                             EmptyExpr
-                                          EmptyExpr
-                                    EmptyExpr
+                              CallExpr
+                                 ID: y
                                  EmptyExpr
-                              EmptyExpr
+                              ExprSequence
+                                 IntExpr
+                                    IntLiteral: 3
+                                 EmptyExpr
                         EmptyStmt
                EmptyStmt
       EmptyDecl

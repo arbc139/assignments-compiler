@@ -11,92 +11,38 @@ Program
                   VarExpr
                      ID: a
                   ExprSequence
+                     CallExpr
+                        ID: b
+                        IntExpr
+                           IntLiteral: 10
                      ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: b
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             ExprSequence
-                                                ExprSequence
-                                                   IntExpr
-                                                      IntLiteral: 10
-                                                   EmptyExpr
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                 EmptyExpr
-                              ExprSequence
-                                 ExprSequence
-                                    CallExpr
-                                       ID: c
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                        CallExpr
+                           ID: c
                            EmptyExpr
                         EmptyExpr
-                     EmptyExpr
                StmtSequence
                   AssignStmt
                      ArrayExpr
                         VarExpr
                            ID: b
+                        IntExpr
+                           IntLiteral: 11
+                     CallExpr
+                        ID: b
                         ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       IntExpr
-                                          IntLiteral: 11
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                           CallExpr
+                              ID: c
                               EmptyExpr
-                           EmptyExpr
-                     ExprSequence
-                        ExprSequence
                            ExprSequence
+                              IntExpr
+                                 IntLiteral: 1
                               ExprSequence
+                                 IntExpr
+                                    IntLiteral: 21
                                  ExprSequence
                                     CallExpr
-                                       ID: b
-                                       ExprSequence
-                                          ExprSequence
-                                             ExprSequence
-                                                ExprSequence
-                                                   ExprSequence
-                                                      CallExpr
-                                                         ID: c
-                                                         EmptyExpr
-                                                      EmptyExpr
-                                                   ExprSequence
-                                                      ExprSequence
-                                                         IntExpr
-                                                            IntLiteral: 1
-                                                         EmptyExpr
-                                                      ExprSequence
-                                                         ExprSequence
-                                                            IntExpr
-                                                               IntLiteral: 21
-                                                            EmptyExpr
-                                                         ExprSequence
-                                                            ExprSequence
-                                                               CallExpr
-                                                                  ID: foo
-                                                                  EmptyActualParam
-                                                               EmptyExpr
-                                                            EmptyExpr
-                                                EmptyExpr
-                                             EmptyExpr
-                                          EmptyExpr
+                                       ID: foo
+                                       EmptyActualParam
                                     EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
                   EmptyStmt
       EmptyDecl

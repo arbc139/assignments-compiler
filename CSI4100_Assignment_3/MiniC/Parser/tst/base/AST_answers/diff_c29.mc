@@ -1,30 +1,20 @@
---- __tmp_ans.txt	2017-11-22 21:01:16.000000000 +0900
-+++ __tmp_sol.txt	2017-11-22 21:01:16.000000000 +0900
-@@ -13,24 +13,48 @@
+--- __tmp_ans.txt	2017-11-22 21:10:01.000000000 +0900
++++ __tmp_sol.txt	2017-11-22 21:10:01.000000000 +0900
+@@ -13,24 +13,28 @@
                    AssignExpr
                       VarExpr
                          ID: j
 -                     BinaryExpr
 -                        VarExpr
 +                     ExprSequence
-+                        ExprSequence
-+                           ExprSequence
-+                              ExprSequence
-+                                 ExprSequence
-+                                    CallExpr
++                        CallExpr
                             ID: j
 -                        Operator: +
-+                                       EmptyExpr
-+                                    EmptyExpr
-+                                 ExprSequence
-+                                    ExprSequence
++                           EmptyExpr
++                        ExprSequence
                          IntExpr
                             IntLiteral: 1
-+                                       EmptyExpr
-+                                    EmptyExpr
-+                              EmptyExpr
 +                           EmptyExpr
-+                        EmptyExpr
                    CompoundStmt
                       EmptyDecl
                       StmtSequence
@@ -34,24 +24,14 @@
 -                           BinaryExpr
 -                              VarExpr
 +                           ExprSequence
-+                              ExprSequence
-+                                 ExprSequence
-+                                    ExprSequence
-+                                       ExprSequence
-+                                          CallExpr
++                              CallExpr
                                   ID: y
 -                              Operator: +
-+                                             EmptyExpr
-+                                          EmptyExpr
-+                                       ExprSequence
-+                                          ExprSequence
++                                 EmptyExpr
++                              ExprSequence
                                IntExpr
                                   IntLiteral: 3
-+                                             EmptyExpr
-+                                          EmptyExpr
-+                                    EmptyExpr
 +                                 EmptyExpr
-+                              EmptyExpr
                          EmptyStmt
                 EmptyStmt
        EmptyDecl

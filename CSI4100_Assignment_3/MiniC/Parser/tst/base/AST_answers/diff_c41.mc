@@ -1,6 +1,6 @@
---- __tmp_ans.txt	2017-11-22 21:01:19.000000000 +0900
-+++ __tmp_sol.txt	2017-11-22 21:01:19.000000000 +0900
-@@ -10,39 +10,93 @@
+--- __tmp_ans.txt	2017-11-22 21:10:04.000000000 +0900
++++ __tmp_sol.txt	2017-11-22 21:10:04.000000000 +0900
+@@ -10,15 +10,16 @@
                 AssignStmt
                    VarExpr
                       ID: a
@@ -8,103 +8,49 @@
 -                     ArrayExpr
 -                        VarExpr
 +                  ExprSequence
-+                     ExprSequence
-+                        ExprSequence
-+                           ExprSequence
-+                              ExprSequence
-+                                 CallExpr
++                     CallExpr
                             ID: b
-+                                    ExprSequence
-+                                       ExprSequence
-+                                          ExprSequence
-+                                             ExprSequence
-+                                                ExprSequence
                          IntExpr
                             IntLiteral: 10
 -                     Operator: +
 -                     VarExpr
-+                                                   EmptyExpr
-+                                                EmptyExpr
-+                                             EmptyExpr
-+                                          EmptyExpr
-+                                       EmptyExpr
-+                                 EmptyExpr
-+                              ExprSequence
-+                                 ExprSequence
-+                                    CallExpr
++                     ExprSequence
++                        CallExpr
                          ID: c
-+                                       EmptyExpr
-+                                    EmptyExpr
-+                                 EmptyExpr
 +                           EmptyExpr
 +                        EmptyExpr
-+                     EmptyExpr
                 StmtSequence
                    AssignStmt
                       ArrayExpr
-                         VarExpr
+@@ -26,23 +27,22 @@
                             ID: b
-+                        ExprSequence
-+                           ExprSequence
-+                              ExprSequence
-+                                 ExprSequence
-+                                    ExprSequence
                          IntExpr
                             IntLiteral: 11
 -                     ArrayExpr
 -                        VarExpr
-+                                       EmptyExpr
-+                                    EmptyExpr
-+                                 EmptyExpr
-+                              EmptyExpr
-+                           EmptyExpr
-+                     ExprSequence
-+                        ExprSequence
-+                           ExprSequence
-+                              ExprSequence
-+                                 ExprSequence
-+                                    CallExpr
++                     CallExpr
                             ID: b
 -                        BinaryExpr
 -                           BinaryExpr
 -                              BinaryExpr
 -                                 VarExpr
-+                                       ExprSequence
-+                                          ExprSequence
-+                                             ExprSequence
-+                                                ExprSequence
-+                                                   ExprSequence
-+                                                      CallExpr
++                        ExprSequence
++                           CallExpr
                                      ID: c
 -                                 Operator: -
-+                                                         EmptyExpr
-+                                                      EmptyExpr
-+                                                   ExprSequence
-+                                                      ExprSequence
++                              EmptyExpr
++                           ExprSequence
                                   IntExpr
                                      IntLiteral: 1
 -                              Operator: +
-+                                                         EmptyExpr
-+                                                      ExprSequence
-+                                                         ExprSequence
++                              ExprSequence
                                IntExpr
                                   IntLiteral: 21
 -                           Operator: -
-+                                                            EmptyExpr
-+                                                         ExprSequence
-+                                                            ExprSequence
++                                 ExprSequence
                             CallExpr
                                ID: foo
                                EmptyActualParam
-+                                                               EmptyExpr
-+                                                            EmptyExpr
-+                                                EmptyExpr
-+                                             EmptyExpr
-+                                          EmptyExpr
 +                                    EmptyExpr
-+                                 EmptyExpr
-+                              EmptyExpr
-+                           EmptyExpr
-+                        EmptyExpr
                    EmptyStmt
        EmptyDecl

@@ -1,36 +1,24 @@
---- __tmp_ans.txt	2017-11-22 21:01:17.000000000 +0900
-+++ __tmp_sol.txt	2017-11-22 21:01:17.000000000 +0900
-@@ -8,12 +8,25 @@
+--- __tmp_ans.txt	2017-11-22 21:10:01.000000000 +0900
++++ __tmp_sol.txt	2017-11-22 21:10:01.000000000 +0900
+@@ -8,12 +8,13 @@
              EmptyDecl
              StmtSequence
                 WhileStmt
 -                  BinaryExpr
 -                     VarExpr
 +                  ExprSequence
-+                     ExprSequence
-+                        ExprSequence
-+                           ExprSequence
-+                              ExprSequence
-+                                 CallExpr
++                     CallExpr
                          ID: a
 -                     Operator: >=
 -                     VarExpr
-+                                    EmptyExpr
-+                                 EmptyExpr
-+                              EmptyExpr
-+                           ExprSequence
-+                              ExprSequence
-+                                 CallExpr
-                         ID: b
-+                                    EmptyExpr
-+                                 EmptyExpr
-+                              EmptyExpr
 +                        EmptyExpr
-+                     EmptyExpr
++                     CallExpr
+                         ID: b
++                        EmptyExpr
                    CompoundStmt
                       DeclSequence
                          VarDecl
-@@ -25,16 +38,30 @@
+@@ -25,16 +26,18 @@
                          AssignStmt
                             VarExpr
                                ID: y
@@ -38,32 +26,20 @@
 -                              BinaryExpr
 -                                 VarExpr
 +                           ExprSequence
-+                              ExprSequence
-+                                 ExprSequence
-+                                    ExprSequence
-+                                       ExprSequence
-+                                          CallExpr
++                              CallExpr
                                      ID: y
 -                                 Operator: +
 -                                 VarExpr
-+                                             EmptyExpr
-+                                          EmptyExpr
-+                                       ExprSequence
-+                                          ExprSequence
-+                                             CallExpr
++                                 EmptyExpr
++                              ExprSequence
++                                 CallExpr
                                      ID: i
 -                              Operator: -
-+                                                EmptyExpr
-+                                             EmptyExpr
-+                                          ExprSequence
-+                                             ExprSequence
++                                    EmptyExpr
++                                 ExprSequence
                                IntExpr
                                   IntLiteral: 2
-+                                                EmptyExpr
-+                                             EmptyExpr
 +                                    EmptyExpr
-+                                 EmptyExpr
-+                              EmptyExpr
                          EmptyStmt
                 EmptyStmt
        EmptyDecl

@@ -9,55 +9,23 @@ Program
             StmtSequence
                IfStmt
                   ExprSequence
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 CallExpr
-                                    ID: i
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           ExprSequence
-                              ExprSequence
-                                 IntExpr
-                                    IntLiteral: 22
-                                 EmptyExpr
-                              EmptyExpr
+                     CallExpr
+                        ID: i
                         EmptyExpr
-                     EmptyExpr
+                     IntExpr
+                        IntLiteral: 22
                   AssignStmt
                      VarExpr
                         ID: j
-                     ExprSequence
-                        ExprSequence
-                           ExprSequence
-                              ExprSequence
-                                 ExprSequence
-                                    IntExpr
-                                       IntLiteral: 1
-                                    EmptyExpr
-                                 EmptyExpr
-                              EmptyExpr
-                           EmptyExpr
-                        EmptyExpr
+                     IntExpr
+                        IntLiteral: 1
                   CallStmt
                      CallExpr
                         ID: foo
                         ActualParamSequence
                            ActualParam
-                              ExprSequence
-                                 ExprSequence
-                                    ExprSequence
-                                       ExprSequence
-                                          ExprSequence
-                                             IntExpr
-                                                IntLiteral: 123
-                                             EmptyExpr
-                                          EmptyExpr
-                                       EmptyExpr
-                                    EmptyExpr
-                                 EmptyExpr
+                              IntExpr
+                                 IntLiteral: 123
                            EmptyActualParam
                EmptyStmt
       EmptyDecl

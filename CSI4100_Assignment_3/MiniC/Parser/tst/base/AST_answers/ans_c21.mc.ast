@@ -1,0 +1,46 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               AssignStmt
+                  VarExpr
+                     ID: b
+                  ExprSequence
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          ExprSequence
+                                             ExprSequence
+                                                CallExpr
+                                                   ID: i
+                                                   EmptyExpr
+                                                EmptyExpr
+                                             ExprSequence
+                                                ExprSequence
+                                                   IntExpr
+                                                      IntLiteral: 100
+                                                   EmptyExpr
+                                                EmptyExpr
+                                          EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                                 ExprSequence
+                                    CallExpr
+                                       ID: k
+                                       EmptyExpr
+                                    EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                     EmptyExpr
+               EmptyStmt
+      EmptyDecl

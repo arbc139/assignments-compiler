@@ -1,0 +1,137 @@
+Program
+   DeclSequence
+      FunDecl
+         IntType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               IfStmt
+                  ExprSequence
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          ExprSequence
+                                             ExprSequence
+                                                CallExpr
+                                                   ID: a
+                                                   EmptyExpr
+                                                EmptyExpr
+                                             EmptyExpr
+                                          ExprSequence
+                                             ExprSequence
+                                                IntExpr
+                                                   IntLiteral: 1
+                                                EmptyExpr
+                                             EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          ExprSequence
+                                             ExprSequence
+                                                ExprSequence
+                                                   CallExpr
+                                                      ID: b
+                                                      EmptyExpr
+                                                   EmptyExpr
+                                                EmptyExpr
+                                             ExprSequence
+                                                ExprSequence
+                                                   IntExpr
+                                                      IntLiteral: 2
+                                                   EmptyExpr
+                                                EmptyExpr
+                                          EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       UnaryExpr
+                                          Operator: !
+                                          ExprSequence
+                                             ExprSequence
+                                                ExprSequence
+                                                   ExprSequence
+                                                      ExprSequence
+                                                         CallExpr
+                                                            ID: a
+                                                            EmptyExpr
+                                                         EmptyExpr
+                                                      EmptyExpr
+                                                   ExprSequence
+                                                      ExprSequence
+                                                         IntExpr
+                                                            IntLiteral: 22
+                                                         EmptyExpr
+                                                      EmptyExpr
+                                                EmptyExpr
+                                             EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                        EmptyExpr
+                  AssignStmt
+                     VarExpr
+                        ID: a
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    CallExpr
+                                       ID: a
+                                       EmptyExpr
+                                    EmptyExpr
+                                 ExprSequence
+                                    ExprSequence
+                                       IntExpr
+                                          IntLiteral: 1
+                                       EmptyExpr
+                                    EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                  ReturnStmt
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    CallExpr
+                                       ID: b
+                                       EmptyExpr
+                                    EmptyExpr
+                                 ExprSequence
+                                    ExprSequence
+                                       IntExpr
+                                          IntLiteral: 2
+                                       EmptyExpr
+                                    EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+               StmtSequence
+                  ReturnStmt
+                     EmptyExpr
+                  EmptyStmt
+      EmptyDecl

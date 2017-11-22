@@ -1,0 +1,60 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               ForStmt
+                  EmptyExpr
+                  EmptyExpr
+                  AssignExpr
+                     VarExpr
+                        ID: j
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    CallExpr
+                                       ID: j
+                                       EmptyExpr
+                                    EmptyExpr
+                                 ExprSequence
+                                    ExprSequence
+                                       IntExpr
+                                          IntLiteral: 1
+                                       EmptyExpr
+                                    EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                  CompoundStmt
+                     EmptyDecl
+                     StmtSequence
+                        AssignStmt
+                           VarExpr
+                              ID: y
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          CallExpr
+                                             ID: y
+                                             EmptyExpr
+                                          EmptyExpr
+                                       ExprSequence
+                                          ExprSequence
+                                             IntExpr
+                                                IntLiteral: 3
+                                             EmptyExpr
+                                          EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                        EmptyStmt
+               EmptyStmt
+      EmptyDecl

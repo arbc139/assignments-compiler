@@ -1,0 +1,101 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: foo
+         FormalParamDeclSequence
+            FormalParamDecl
+               IntType
+               ID: i
+            EmptyFormalParamDecl
+         EmptyCompoundStmt
+      DeclSequence
+         FunDecl
+            VoidType
+            ID: main
+            EmptyFormalParamDecl
+            CompoundStmt
+               DeclSequence
+                  VarDecl
+                     IntType
+                     ID: i
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    IntExpr
+                                       IntLiteral: 17
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                  EmptyDecl
+               StmtSequence
+                  WhileStmt
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    CallExpr
+                                       ID: i
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              ExprSequence
+                                 ExprSequence
+                                    IntExpr
+                                       IntLiteral: 0
+                                    EmptyExpr
+                                 EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                     CompoundStmt
+                        EmptyDecl
+                        StmtSequence
+                           CallStmt
+                              CallExpr
+                                 ID: foo
+                                 ActualParamSequence
+                                    ActualParam
+                                       ExprSequence
+                                          ExprSequence
+                                             ExprSequence
+                                                ExprSequence
+                                                   ExprSequence
+                                                      CallExpr
+                                                         ID: i
+                                                         EmptyExpr
+                                                      EmptyExpr
+                                                   EmptyExpr
+                                                EmptyExpr
+                                             EmptyExpr
+                                          EmptyExpr
+                                    EmptyActualParam
+                           StmtSequence
+                              AssignStmt
+                                 VarExpr
+                                    ID: i
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          ExprSequence
+                                             ExprSequence
+                                                CallExpr
+                                                   ID: i
+                                                   EmptyExpr
+                                                EmptyExpr
+                                             ExprSequence
+                                                ExprSequence
+                                                   IntExpr
+                                                      IntLiteral: 1
+                                                   EmptyExpr
+                                                EmptyExpr
+                                          EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                              EmptyStmt
+                  EmptyStmt
+         EmptyDecl

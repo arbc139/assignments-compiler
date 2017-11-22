@@ -1,0 +1,54 @@
+Program
+   DeclSequence
+      FunDecl
+         VoidType
+         ID: main
+         EmptyFormalParamDecl
+         CompoundStmt
+            EmptyDecl
+            StmtSequence
+               IfStmt
+                  ExprSequence
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 CallExpr
+                                    ID: i
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           ExprSequence
+                              ExprSequence
+                                 IntExpr
+                                    IntLiteral: 22
+                                 EmptyExpr
+                              EmptyExpr
+                        EmptyExpr
+                     EmptyExpr
+                  CompoundStmt
+                     DeclSequence
+                        VarDecl
+                           IntType
+                           ID: j
+                           EmptyExpr
+                        EmptyDecl
+                     StmtSequence
+                        AssignStmt
+                           VarExpr
+                              ID: j
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       ExprSequence
+                                          IntExpr
+                                             IntLiteral: 1
+                                          EmptyExpr
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                        EmptyStmt
+               EmptyStmt
+      EmptyDecl

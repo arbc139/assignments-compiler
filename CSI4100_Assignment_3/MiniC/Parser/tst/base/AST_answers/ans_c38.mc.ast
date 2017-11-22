@@ -1,0 +1,68 @@
+Program
+   DeclSequence
+      VarDecl
+         ArrayType
+            IntType
+            IntExpr
+               IntLiteral: 10
+         ID: i
+         EmptyExpr
+      DeclSequence
+         VarDecl
+            ArrayType
+               IntType
+               IntExpr
+                  IntLiteral: 10
+            ID: j
+            EmptyExpr
+         DeclSequence
+            VarDecl
+               ArrayType
+                  ArrayType
+                     IntType
+                     IntExpr
+                        IntLiteral: 10
+                  IntExpr
+                     IntLiteral: 3
+               ID: k
+               ExprSequence
+                  ExprSequence
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 IntExpr
+                                    IntLiteral: 1
+                                 EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                     EmptyExpr
+                  ExprSequence
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    IntExpr
+                                       IntLiteral: 2
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+                     ExprSequence
+                        ExprSequence
+                           ExprSequence
+                              ExprSequence
+                                 ExprSequence
+                                    ExprSequence
+                                       IntExpr
+                                          IntLiteral: 3
+                                       EmptyExpr
+                                    EmptyExpr
+                                 EmptyExpr
+                              EmptyExpr
+                           EmptyExpr
+                        EmptyExpr
+            EmptyDecl

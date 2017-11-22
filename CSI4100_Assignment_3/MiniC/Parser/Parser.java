@@ -512,8 +512,6 @@ public class Parser {
           acceptIt();
           expr = parseExpr();
           accept(Token.RIGHTBRACKET);
-        } else {
-          syntaxError("", "");
         }
         finish(pos);
         return new CallExpr(ident, expr, pos);

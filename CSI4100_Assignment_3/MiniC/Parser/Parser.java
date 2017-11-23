@@ -268,7 +268,7 @@ public class Parser {
     D = new VarDecl(theType, Ident, E, previousTokenPosition);
     if (currentToken.kind == Token.COMMA) {
       Seq = new DeclSequence(
-        D, parseInitDeclList(theType), previousTokenPosition);
+        D, parseInitDeclList(T), previousTokenPosition);
     } else {
       Seq = new DeclSequence(
         D, new EmptyDecl(previousTokenPosition), previousTokenPosition);
@@ -368,16 +368,16 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseAndExpr();
-    if (currentToken.kind != Token.OR) {
-      finish(pos);
-      return lExpr;
-    }
-    Operator op = new Operator(
+    while (currentToken.kind == Token.OR) {
+      Operator op = new Operator(
         currentToken.GetLexeme(), previousTokenPosition);
-    acceptIt();
-    Expr rExpr = parseExpr();
-    finish(pos);
-    return new BinaryExpr(lExpr, op, rExpr, pos);
+      acceptIt();
+      Expr rExpr = parseAndExpr();
+      finish(pos);
+      lExpr = new BinaryExpr(lExpr, op, rExpr, pos);
+      start(pos);
+    }
+    return lExpr;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -391,16 +391,16 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseRelationalExpr();
-    if (currentToken.kind != Token.AND) {
-      finish(pos);
-      return lExpr;
-    }
-    Operator op = new Operator(
+    while (currentToken.kind == Token.AND) {
+      Operator op = new Operator(
         currentToken.GetLexeme(), previousTokenPosition);
-    acceptIt();
-    Expr rExpr = parseAndExpr();
-    finish(pos);
-    return new BinaryExpr(lExpr, op, rExpr, pos);
+      acceptIt();
+      Expr rExpr = parseRelationalExpr();
+      finish(pos);
+      lExpr = new BinaryExpr(lExpr, op, rExpr, pos);
+      start(pos);
+    }
+    return lExpr;
   }
 
 
@@ -440,20 +440,23 @@ public class Parser {
   //
   // AddExpr ::= MultExpr ( ("+" | "-") MultExpr )*
   //
+  // AddExpr ::= (MultExpr ("+" | "-"))* MultExpr
+  //
   ///////////////////////////////////////////////////////////////////////////////
   public Expr parseAddExpr() throws SyntaxError {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseMultExpr();
-    if (currentToken.kind != Token.PLUS && currentToken.kind != Token.MINUS) {
-      finish(pos);
-      return lExpr;
-    }
-    Operator op = new Operator(
+    while (currentToken.kind == Token.PLUS || currentToken.kind == Token.MINUS) {
+      Operator op = new Operator(
         currentToken.GetLexeme(), previousTokenPosition);
-    acceptIt();
-    Expr rExpr = parseAddExpr();
-    return new BinaryExpr(lExpr, op, rExpr, pos);
+      acceptIt();
+      Expr rExpr = parseMultExpr();
+      finish(pos);
+      lExpr = new BinaryExpr(lExpr, op, rExpr, pos);
+      start(pos);
+    }
+    return lExpr;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -467,16 +470,16 @@ public class Parser {
     SourcePos pos = new SourcePos();
     start(pos);
     Expr lExpr = parseUnaryExpr();
-    if (currentToken.kind != Token.TIMES && currentToken.kind != Token.DIV) {
-      finish(pos);
-      return lExpr;
-    }
-    Operator op = new Operator(
+    while (currentToken.kind == Token.TIMES || currentToken.kind == Token.DIV) {
+      Operator op = new Operator(
         currentToken.GetLexeme(), previousTokenPosition);
-    acceptIt();
-    Expr rExpr = parseMultExpr();
-    finish(pos);
-    return new BinaryExpr(lExpr, op, rExpr, pos);
+      acceptIt();
+      Expr rExpr = parseUnaryExpr();
+      finish(pos);
+      lExpr = new BinaryExpr(lExpr, op, rExpr, pos);
+      start(pos);
+    }
+    return lExpr;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -490,10 +493,10 @@ public class Parser {
     while (currentToken.kind == Token.PLUS ||
         currentToken.kind == Token.MINUS ||
         currentToken.kind == Token.NOT) {
-      Operator opAST = new Operator(
+      Operator op = new Operator(
         currentToken.GetLexeme(), previousTokenPosition);
       acceptIt();
-      return new UnaryExpr(opAST, parseUnaryExpr(), previousTokenPosition);
+      return new UnaryExpr(op, parseUnaryExpr(), previousTokenPosition);
     }
     return parsePrimaryExpr();
   }
@@ -517,16 +520,20 @@ public class Parser {
         Expr expr = new EmptyExpr(previousTokenPosition);
         if (currentToken.kind == Token.LEFTPAREN) {
           expr = parseArgList();
+          finish(pos);
+          return new CallExpr(ident, expr, pos);
         } else if (currentToken.kind == Token.LEFTBRACKET) {
+          finish(pos);
+          VarExpr varExpr = new VarExpr(ident, pos);
           acceptIt();
           expr = parseExpr();
           accept(Token.RIGHTBRACKET);
+          finish(pos);
+          return new ArrayExpr(varExpr, expr, pos);
         } else {
           finish(pos);
           return new VarExpr(ident, pos);
         }
-        finish(pos);
-        return new CallExpr(ident, expr, pos);
       }
       case Token.LEFTPAREN: {
         acceptIt();

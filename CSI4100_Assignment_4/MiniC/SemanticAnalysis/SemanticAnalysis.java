@@ -403,7 +403,7 @@ System.out.println("The class of " + t +
 
     /* Start of your code: */
     if (
-      x.idAST.Lexeme == "main" &&
+      x.idAST.Lexeme.equals("main") &&
       !x.tAST.Tequal(StdEnvironment.intType)
     ) {
       reporter.reportError(errMsg[1], "", x.pos);
@@ -545,7 +545,7 @@ System.out.println("The class of " + t +
 
     /* Start of your code: */
     if (!x.eAST.type.Tequal(StdEnvironment.boolType)) {
-      reporter.reportError(errMsg[20], "", x.eAST.pos);
+      reporter.reportError(errMsg[22], "", x.eAST.pos);
     }
     /* End of your code */
     x.stmtAST.accept(this);
@@ -1010,6 +1010,25 @@ System.out.println("The class of " + t +
       reporter.reportError(errMsg[23], "", x.pos);
     } else if (GetNrOfFormalParams(F) > GetNrOfActualParams(x)) {
       reporter.reportError(errMsg[24], "", x.pos);
+    } else {
+      int NrFormalParams = GetNrOfFormalParams(F);
+      for (int i = 1; i<= NrFormalParams; i++) {
+        FormalParamDecl Form = GetFormalParam(F, i);
+        ActualParam Act = GetActualParam(x, i);
+        Type FormalT = Form.astType;
+        Type ActualT = Act.pAST.type;
+        if (!ActualT.AssignableTo(FormalT)) {
+          reporter.reportError(errMsg[25], "", x.pos);
+          continue;
+        }
+
+        if (
+          ActualT.Tequal(StdEnvironment.intType) &&
+          FormalT.Tequal(StdEnvironment.floatType)
+        ) {
+          Act.pAST = i2f(Act.pAST);
+        }
+      }
     }
     /* End of your code */
 
@@ -1034,24 +1053,6 @@ System.out.println("The class of " + t +
       * of expressions working. Uncomment the matching closing parenthesis
       * of the "for" loop also.
     */
-    int NrFormalParams = GetNrOfFormalParams(F);
-    for (int i = 1; i<= NrFormalParams; i++) {
-      FormalParamDecl Form = GetFormalParam(F, i);
-      ActualParam Act = GetActualParam(x, i);
-      Type FormalT = Form.astType;
-      Type ActualT = Act.pAST.type;
-      if (!ActualT.AssignableTo(FormalT)) {
-        reporter.reportError(errMsg[25], "", x.pos);
-        continue;
-      }
-
-      if (
-        ActualT.Tequal(StdEnvironment.intType) &&
-        FormalT.Tequal(StdEnvironment.floatType)
-      ) {
-        Act.pAST = i2f(Act.pAST);
-      }
-    }
     /* End of your code */
 
     // set the return type of the call expression to the return type of

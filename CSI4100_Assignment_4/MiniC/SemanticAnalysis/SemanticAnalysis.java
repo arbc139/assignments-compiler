@@ -329,7 +329,9 @@ System.out.println("The class of " + t +
     // returned, then the program does not contain a main function.
 
     /* Start of your code: */
-
+    if (scopeStack.retrieve("main") == null) {
+      reporter.reportError(errMsg[0], "", progAST.pos);
+    }
     /* End of your code */
   }
 
@@ -358,7 +360,12 @@ System.out.println("The class of " + t +
     // x.tAST is of type int.
 
     /* Start of your code: */
-
+    if (
+      x.idAST.Lexeme == "main" &&
+      !x.tAST.Tequal(StdEnvironment.intType)
+    ) {
+      reporter.reportError(errMsg[1], "", x.pos);
+    }
     /* End of your code */
 
     // STEP 1:
@@ -407,7 +414,16 @@ System.out.println("The class of " + t +
     // Report error messages 3 and 4 respectively:
 
     /* Start of your code: */
+    if (x.astType.Tequal(StdEnvironment.voidType)) {
+      reporter.reportError(errMsg[3], "", x.pos);
+    }
 
+    if (
+      x.astType instanceof ArrayType &&
+      ((ArrayType) x.astType).astType.Tequal(StdEnvironment.voidType)
+    ) {
+      reporter.reportError(errMsg[4], "", x.pos);
+    }
     /* End of your code */
   }
 
@@ -444,7 +460,15 @@ System.out.println("The class of " + t +
     // If conditions (1) or (2) are violated, then you should report Error 6.
 
     /* Start of your code: */
-
+    if (
+      x.rAST.type.AssignableTo(x.lAST.type) &&
+      x.lAST.type.Tequal(StdEnvironment.floatType) &&
+      x.rAST.type.Tequal(StdEnvironment.intType)
+    ) {
+      x.rAST = i2f(x.rAST);
+    } else if (!x.rAST.type.Tequal(x.lAST.type)) {
+      reporter.reportError(errMsg[6], "", x.pos);
+    }
     /* End of your code */
 
     if (!(x.lAST instanceof VarExpr) && !(x.lAST instanceof ArrayExpr)) {
@@ -460,7 +484,9 @@ System.out.println("The class of " + t +
     // look at "for" loops, which use a similar check for the loop condition.
 
     /* Start of your code: */
-
+    if (!x.eAST.type.Tequal(StdEnvironment.boolType)) {
+      reporter.reportError(errMsg[20], "", x.eAST.pos);
+    }
     /* End of your code */
     x.thenAST.accept(this);
     if (x.elseAST != null) {
@@ -476,7 +502,9 @@ System.out.println("The class of " + t +
     // look at "for" loops which use a similar check.
 
     /* Start of your code: */
-
+    if (!x.eAST.type.Tequal(StdEnvironment.boolType)) {
+      reporter.reportError(errMsg[20], "", x.eAST.pos);
+    }
     /* End of your code */
     x.stmtAST.accept(this);
   }
@@ -503,20 +531,20 @@ System.out.println("The class of " + t +
       // statement's expression with the return type of the function.
       // Uncomment this code
       // as soon as you have finished type-checking of expressions.
-      /* START:
-      if(x.eAST.type.AssignableTo(currentFunctionReturnType)) {
-          // Check for type coercion: if the function returns float, but
-          // the expression of the return statement is of type int, we
-          // need to convert this expression to float.
-          if(currentFunctionReturnType.Tequal(StdEnvironment.floatType) &&
-              x.eAST.type.Tequal(StdEnvironment.intType)) {
-              //coercion of operand to float:
-              x.eAST = i2f(x.eAST);
-          }
+      if (x.eAST.type.AssignableTo(currentFunctionReturnType)) {
+        // Check for type coercion: if the function returns float, but
+        // the expression of the return statement is of type int, we
+        // need to convert this expression to float.
+        if (
+          currentFunctionReturnType.Tequal(StdEnvironment.floatType) &&
+          x.eAST.type.Tequal(StdEnvironment.intType)
+        ) {
+          //coercion of operand to float:
+          x.eAST = i2f(x.eAST);
+        }
       } else {
-          reporter.reportError(errMsg[8], "", x.eAST.pos);
+        reporter.reportError(errMsg[8], "", x.eAST.pos);
       }
-      END */
     }
   }
 
@@ -582,7 +610,6 @@ System.out.println("The class of " + t +
         // Perform i2f coercion if necessary.
 
         /* Start of your code: */
-
         /* End of your code */
       } else {
         //STEP 4:
@@ -613,7 +640,16 @@ System.out.println("The class of " + t +
     // Report error messages 3 and 4 respectively:
 
     /* Start of your code: */
+    if (x.tAST.Tequal(StdEnvironment.voidType)) {
+      reporter.reportError(errMsg[3], "", x.pos);
+    }
 
+    if (
+      x.tAST instanceof ArrayType &&
+      ((ArrayType) x.tAST).astType.Tequal(StdEnvironment.voidType)
+    ) {
+      reporter.reportError(errMsg[4], "", x.pos);
+    }
     /* End of your code */
   }
 
@@ -630,9 +666,12 @@ System.out.println("The class of " + t +
     // of its identifier. Use "instanceof" to find out whether x.Ident.declAST
     // is a function declaration (FunDecl). In that case you should report
     // Error 11 and set x.type to the error type from StdEnvironment.
-    x.type = typeOfDecl (x.Ident.declAST);
+    x.type = typeOfDecl(x.Ident.declAST);
     /* Start of your code: */
-
+    if (x.Ident.declAST instanceof FunDecl) {
+      reporter.reportError(errMsg[11], "", x.Ident.declAST.pos);
+      x.type = StdEnvironment.errorType;
+    }
     /* End of your code */
   }
 
@@ -663,7 +702,7 @@ System.out.println("The class of " + t +
     // (StdEnvironment.intType).
 
     /* Start of your code: */
-
+    x.type = StdEnvironment.intType;
     /* End of your code */
   }
 
@@ -674,7 +713,7 @@ System.out.println("The class of " + t +
     // (StdEnvironment.floatType).
 
     /* Start of your code: */
-
+    x.type = StdEnvironment.floatType;
     /* End of your code */
   }
 
@@ -685,7 +724,7 @@ System.out.println("The class of " + t +
     // (StdEnvironment.boolType).
 
     /* Start of your code: */
-
+    x.type = StdEnvironment.boolType;
     /* End of your code */
   }
 
@@ -696,7 +735,7 @@ System.out.println("The class of " + t +
     // (StdEnvironment.stringType).
 
     /* Start of your code: */
-
+    x.type = StdEnvironment.stringType;
     /* End of your code */
   }
 
@@ -768,9 +807,16 @@ System.out.println("The class of " + t +
         // This is the dual case to "int x float" above.
 
         /* Start of your code: */
-
-        /* End of your code */
+        //coercion of left operand to float:
+        x.rAST = i2f(x.rAST);
+        x.oAST.type = StdEnvironment.floatType;
+        if (HasBoolReturnType(x.oAST)) {
+          x.type = StdEnvironment.boolType;
+        } else {
+          x.type = StdEnvironment.floatType;
+        }
         return;
+        /* End of your code */
       }
     } else if (HasBoolArgs(x.oAST)) {
       if (
@@ -817,7 +863,30 @@ System.out.println("The class of " + t +
     // slightly more complicated case.
 
     /* Start of your code: */
+    if (
+      (
+        x.eAST.type.Tequal(StdEnvironment.intType) ||
+        x.eAST.type.Tequal(StdEnvironment.floatType)
+      ) &&
+      HasIntOrFloatArgs(x.oAST)
+    ) {
+      x.oAST.type = x.eAST.type;
+      x.type = x.eAST.type;
+      return;
+    }
 
+    if (
+      x.eAST.type.Tequal(StdEnvironment.boolType) &&
+      HasBoolArgs(x.oAST)
+    ) {
+      x.type = StdEnvironment.boolType;
+      x.oAST.type = StdEnvironment.intType;
+      return;
+    }
+
+    x.oAST.type = StdEnvironment.errorType;
+    x.type = StdEnvironment.errorType;
+    reporter.reportError(errMsg[10], "", x.pos);
     /* End of your code */
   }
 
@@ -852,9 +921,12 @@ System.out.println("The class of " + t +
     // where f is not a function.
 
     /* Start of your code: */
-
+    if (!(D instanceof FunDecl)) {
+      reporter.reportError(errMsg[19], "", x.pos);
+      return;
+    }
     /* End of your code */
-    FunDecl F = (FunDecl ) D;
+    FunDecl F = (FunDecl) D;
     // STEP 2:
     // Check that the number of formal args from F and the number of actual
     // parameters of the function call x match.
@@ -863,7 +935,11 @@ System.out.println("The class of " + t +
     // the number of formal and actual parameters.
 
     /* Start of your code: */
-
+    if (GetNrOfFormalParams(F) < GetNrOfActualParams(x)) {
+      reporter.reportError(errMsg[23], "", x.pos);
+    } else if (GetNrOfFormalParams(F) > GetNrOfActualParams(x)) {
+      reporter.reportError(errMsg[24], "", x.pos);
+    }
     /* End of your code */
 
     // STEP 2:
@@ -886,20 +962,25 @@ System.out.println("The class of " + t +
       * the following code as soon as you have type-checking
       * of expressions working. Uncomment the matching closing parenthesis
       * of the "for" loop also.
-
-      * Start of your code:
-
+    */
     int NrFormalParams = GetNrOfFormalParams(F);
     for (int i = 1; i<= NrFormalParams; i++) {
-        FormalParamDecl Form = GetFormalParam(F, i);
-        ActualParam Act = GetActualParam(x, i);
-        Type FormalT = Form.astType;
-        Type ActualT = Act.pAST.type;
-    */
+      FormalParamDecl Form = GetFormalParam(F, i);
+      ActualParam Act = GetActualParam(x, i);
+      Type FormalT = Form.astType;
+      Type ActualT = Act.pAST.type;
+      if (!ActualT.AssignableTo(FormalT)) {
+        reporter.reportError(errMsg[25], "", x.pos);
+        continue;
+      }
 
-
-
-    //}
+      if (
+        ActualT.Tequal(StdEnvironment.intType) &&
+        FormalT.Tequal(StdEnvironment.floatType)
+      ) {
+        Act.pAST = i2f(Act.pAST);
+      }
+    }
     /* End of your code */
 
     // set the return type of the call expression to the return type of

@@ -236,6 +236,48 @@ System.out.println("The class of " + t +
     return (ActualParam) ((ActualParamSequence) P).lAST;
   }
 
+  // Get the number of expr sequences:
+  // Similar to GetNrOfFormalParams above.
+  // Note: this function assumes the AST tree layout from Assignment 3.
+  private int GetNrOfExprSequence(ExprSequence seq) {
+    int NrArgs = 1;
+    Expr rExpr = seq.rAST;
+    assert (
+      (rExpr instanceof EmptyExpr) ||
+      (rExpr instanceof ExprSequence)
+    );
+    if (rExpr instanceof EmptyExpr) {
+      return 1;
+    }
+
+    while (rExpr instanceof ExprSequence) {
+      NrArgs++;
+      rExpr = ((ExprSequence) rExpr).rAST;
+      assert(
+        (rExpr instanceof EmptyExpr) ||
+        (rExpr instanceof ExprSequence)
+      );
+    }
+    return NrArgs;
+  }
+
+  private ExprSequence GetExprSequence(ExprSequence seq, int nr) {
+    if (nr == 1) {
+      return seq;
+    }
+    int aArgs = GetNrOfExprSequence(seq);
+    assert(aArgs >= 0);
+    assert(nr <= aArgs);
+    ExprSequence rSeq = (ExprSequence) seq.rAST;
+    for (int i = 2; i < nr; i++) {
+      assert(rSeq instanceof ExprSequence);
+      rSeq = (ExprSequence) ((ExprSequence) rSeq).rAST;
+    }
+    assert(rSeq instanceof ExprSequence);
+    return rSeq;
+  }
+
+
   // Given a type t, this function can be used to print the type.
   // Useful for debuggging, a similar mechanism is used in the
   // TreeDrawer Visitor.
@@ -608,8 +650,37 @@ System.out.println("The class of " + t +
         // Array declarations.
         // Check for error messages 15, 16, 13.
         // Perform i2f coercion if necessary.
+        Type arrayType = typeOfArrayType(x.tAST);
 
         /* Start of your code: */
+        // #15: invalid initializer: scalar initializer for array
+        if (!(x.eAST instanceof ExprSequence)) {
+          reporter.reportError(errMsg[15], "", x.pos);
+        } else {
+          int size = ((IntExpr) ((ArrayType) x.tAST).astExpr).GetValue();
+          ExprSequence rootSeq = (ExprSequence) x.eAST;
+          // #16: too many elements in array initializer
+          if (size < GetNrOfExprSequence(rootSeq)) {
+            reporter.reportError(errMsg[16], "", x.pos);
+          }
+
+          // #13: wrong type for element in array initializer
+          int nrExprSequences = GetNrOfExprSequence(rootSeq);
+          for (int i = 1; i <= nrExprSequences; i++) {
+            ExprSequence seq = GetExprSequence(rootSeq, i);
+            if (!seq.lAST.type.AssignableTo(arrayType)) {
+              reporter.reportError(errMsg[13], "", seq.lAST.pos);
+              continue;
+            }
+
+            if (
+              seq.lAST.type.Tequal(StdEnvironment.intType) &&
+              arrayType.Tequal(StdEnvironment.floatType)
+            ) {
+              seq.lAST = i2f(seq.lAST);
+            }
+          }
+        }
         /* End of your code */
       } else {
         //STEP 4:

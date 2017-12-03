@@ -68,7 +68,7 @@ System.out.println("The class of " + t +
     return T;
   }
 
-  // This function returns the element type of an ArrayType AST node. 
+  // This function returns the element type of an ArrayType AST node.
   private Type typeOfArrayType(AST d) {
     assert(d != null);
     assert(d instanceof ArrayType);
@@ -173,7 +173,7 @@ System.out.println("The class of " + t +
     return NrArgs;
   }
 
-  // Given a function declaration FunDecl, this method returns the AST for 
+  // Given a function declaration FunDecl, this method returns the AST for
   // the formal parameter nr (nr is the number of the parameter).
   // E.g., for the following function and nr=2,
   //
@@ -239,29 +239,27 @@ System.out.println("The class of " + t +
   // Given a type t, this function can be used to print the type.
   // Useful for debuggging, a similar mechanism is used in the
   // TreeDrawer Visitor.
-  /*
-  private String TypeTag (Type t) {
-      String l = new String("");
-      if (t == null) {
-          l = new String("<?>");
-      } else if (t.Tequal(StdEnvironment.intType)) {
-          l = new String ("<int>");
-      } else if (t.Tequal(StdEnvironment.boolType)) {
-          l = new String ("<bool>");
-      } else if (t.Tequal(StdEnvironment.floatType)) {
-          l = new String ("<float>");
-      } else if (t.Tequal(StdEnvironment.stringType)) {
-          l = new String ("<string>");
-      } else if (t.Tequal(StdEnvironment.voidType)) {
-          l = new String ("<void>");
-      } else if (t instanceof ErrorType) {
-          l = new String ("<error>");
-      } else {
-          assert(false);
-      }
-      return l;
+  private String TypeTag(Type t) {
+    String l = new String("");
+    if (t == null) {
+      l = new String("<?>");
+    } else if (t.Tequal(StdEnvironment.intType)) {
+      l = new String ("<int>");
+    } else if (t.Tequal(StdEnvironment.boolType)) {
+      l = new String ("<bool>");
+    } else if (t.Tequal(StdEnvironment.floatType)) {
+      l = new String ("<float>");
+    } else if (t.Tequal(StdEnvironment.stringType)) {
+      l = new String ("<string>");
+    } else if (t.Tequal(StdEnvironment.voidType)) {
+      l = new String ("<void>");
+    } else if (t instanceof ErrorType) {
+      l = new String ("<error>");
+    } else {
+      assert(false);
+    }
+    return l;
   }
-  */
 
   // This array of strings contains the error messages that we generate
   // for errors detected during semantic analysis. These messages are
@@ -287,17 +285,17 @@ System.out.println("The class of " + t +
 
     //expression types:
     "#8: incompatible type for return statement",
-          "#9: incompatible types for binary operator",
-          "#10: incompatible type for unary operator",
+    "#9: incompatible types for binary operator",
+    "#10: incompatible type for unary operator",
 
-          //scalars:
-          "#11: attempt to use a function as a scalar",
+    //scalars:
+    "#11: attempt to use a function as a scalar",
 
-          //arrays:
-          "#12: attempt to use scalar/function as an array",
-          "#13: wrong type for element in array initializer",
-          "#14: invalid initializer: array initializer for scalar",
-          "#15: invalid initializer: scalar initializer for array",
+    //arrays:
+    "#12: attempt to use scalar/function as an array",
+    "#13: wrong type for element in array initializer",
+    "#14: invalid initializer: array initializer for scalar",
+    "#15: invalid initializer: scalar initializer for array",
     "#16: too many elements in array initializer",
     "#17: array subscript is not an integer",
     "#18: array size missing",
@@ -322,18 +320,17 @@ System.out.println("The class of " + t +
   //  (a) Each applied occurrence of an identifier or operator is linked to
   //      the corresponding declaration of that identifier or operator.
   //  (b) Each expression and value-or-variable-name is decorated by its type.
-
   public void check(Program progAST) {
     visit(progAST);
-      // STEP 3:
-      // Check Error 0
-      //
-      // Retrieve "main" from the scope stack. If it is not there (null is
-      // returned, then the program does not contain a main function.
+    // STEP 3:
+    // Check Error 0
+    //
+    // Retrieve "main" from the scope stack. If it is not there (null is
+    // returned, then the program does not contain a main function.
 
-      /* Start of your code: */
+    /* Start of your code: */
 
-      /* End of your code */
+    /* End of your code */
   }
 
   public void visit(Program x) {
@@ -354,7 +351,7 @@ System.out.println("The class of " + t +
     /* End of your code */
 
     // STEP 3:
-    // Check Error 1: 
+    // Check Error 1:
     // If this function is the "main" function, then ensure that
     // x.tAST is of type int.
 
@@ -369,7 +366,7 @@ System.out.println("The class of " + t +
     // function's compound_stmt.
 
     /* Start of your code: */
-
+    scopeStack.openScope();
     /* End of your code */
 
 

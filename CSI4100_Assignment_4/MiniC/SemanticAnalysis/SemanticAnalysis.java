@@ -502,13 +502,14 @@ System.out.println("The class of " + t +
     // If conditions (1) or (2) are violated, then you should report Error 6.
 
     /* Start of your code: */
-    if (
-      x.rAST.type.AssignableTo(x.lAST.type) &&
-      x.lAST.type.Tequal(StdEnvironment.floatType) &&
-      x.rAST.type.Tequal(StdEnvironment.intType)
-    ) {
-      x.rAST = i2f(x.rAST);
-    } else if (!x.rAST.type.Tequal(x.lAST.type)) {
+    if (x.rAST.type.AssignableTo(x.lAST.type)) {
+      if (
+        x.lAST.type.Tequal(StdEnvironment.floatType) &&
+        x.rAST.type.Tequal(StdEnvironment.intType)
+      ) {
+        x.rAST = i2f(x.rAST);
+      }
+    } else {
       reporter.reportError(errMsg[6], "", x.pos);
     }
     /* End of your code */
@@ -690,7 +691,22 @@ System.out.println("The class of " + t +
         // Perform i2f coercion if necessary.
 
         /* Start of your code: */
+        // #14: invalid initializer: array initializer for scalar
+        if (x.eAST instanceof ExprSequence) {
+          reporter.reportError(errMsg[14], "", x.pos);
+        }
 
+        // #6: incompatible types for =
+        if (x.eAST.type != null && x.eAST.type.AssignableTo(x.tAST)) {
+          if (
+            x.tAST.Tequal(StdEnvironment.floatType) &&
+            x.eAST.type.Tequal(StdEnvironment.intType)
+          ) {
+            x.eAST = i2f(x.eAST);
+          }
+        } else if (x.eAST.type != null) {
+          reporter.reportError(errMsg[6], "", x.pos);
+        }
         /* End of your code */
       }
     }
@@ -758,7 +774,9 @@ System.out.println("The class of " + t +
         //coercion of right operand to int:
         x.rAST = i2f(x.rAST);
       }
-    } else {
+    } else if (!x.rAST.type.Tequal(x.lAST.type)) {
+      System.out.println("rAST:" + TypeTag(x.rAST.type));
+      System.out.println("lAST:" + TypeTag(x.lAST.type));
       reporter.reportError(errMsg[6], "", x.rAST.pos);
     }
     if (!(x.lAST instanceof VarExpr) && !(x.lAST instanceof ArrayExpr)) {

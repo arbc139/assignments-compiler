@@ -1,0 +1,78 @@
+
+apply plugin: 'java'
+
+// Name and version (for the generated jar file):
+archivesBaseName = 'MiniC'
+version = 'CodeGen'
+
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'MiniC Assignment 5',
+               'Implementation-Version': version,
+               'Main-Class': 'MiniC.MiniC' // Class with the main method.
+  }
+}
+
+compileJava {
+
+   //enable compilation in a separate daemon process:
+   options.fork = true
+
+   //enable incremental compilation:
+   options.incremental = true
+
+}
+
+task copyClassfilesNoScanner(type: Copy) {
+  from 'resources/scanner_only/'
+  into 'build/classes/java/main/MiniC'
+  include '**/*.class'
+}
+
+task copyClassfilesNoScannerNoParser(type: Copy) {
+  from 'resources/scanner_and_parser/'
+  into 'build/classes/java/main/MiniC'
+  include '**/*.class'
+}
+
+task jarNoScanner(dependsOn: [
+  'jar',
+  'copyClassfilesNoScanner'
+])
+
+task jarNoScannerNoParser(dependsOn: [
+  'jar',
+  'copyClassfilesNoScannerNoParser'
+])
+
+task compile(dependsOn: [
+  'compileJava'
+])
+
+task compileNoScanner(dependsOn: [
+  'compileJava',
+  'copyClassfilesNoScanner'
+])
+
+task compileNoScannerNoParser(dependsOn: [
+  'compileJava',
+  'copyClassfilesNoScannerNoParser'
+])
+
+copyClassfilesNoScanner.mustRunAfter compileJava
+
+copyClassfilesNoScannerNoParser.mustRunAfter compileJava
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['MiniC']
+    }
+  }
+}
+
+// creates the gradle wrapper scripts for Unix and Windows:
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.2'
+}
+

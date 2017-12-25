@@ -1,0 +1,1 @@
+foo's arguments: 300, true

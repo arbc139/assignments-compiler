@@ -460,7 +460,7 @@ public class Emitter implements Visitor {
     emit("; MiniC v. 1.0");
     emit(".class public " + ClassName);
     emit(".super java/lang/Object");
-    //emit("; Program");
+    emit("; Program");
     if(x.D instanceof VarDecl) {
       ((VarDecl) x.D).setGlobal();
     }
@@ -471,7 +471,7 @@ public class Emitter implements Visitor {
   }
 
   public void visit(EmptyDecl x) {
-    //emit("; EmptyDecl");
+    emit("; EmptyDecl");
   }
 
   public void visit(FunDecl x) {
@@ -482,13 +482,12 @@ public class Emitter implements Visitor {
       frame = new Frame(true);
       emit ("\n.method public static main([Ljava/lang/String;)V");
       // .var for main"s "this" pointer:
-      //emit (".var 0 is this L" + ClassName + "; from Label0 to Label1");
+      emit (".var 0 is this L" + ClassName + "; from Label0 to Label1");
       // .var for main's String[] argument:
-      //emit (".var 1 is arg0 [Ljava/lang/String; from Label0 to Label1");
+      emit (".var 1 is arg0 [Ljava/lang/String; from Label0 to Label1");
     } else {
       frame = new Frame(false);
-      emit ("\n.method public " + x.idAST.Lexeme
-            + getDescriptor(x));
+      emit ("\n.method public " + x.idAST.Lexeme + getDescriptor(x));
       x.paramsAST.accept(this); // process formal parameters to adjust the
                                   // local variable count.
     }
@@ -502,8 +501,8 @@ public class Emitter implements Visitor {
       emit("invokespecial " + ClassName + "/<init>()V");
       emit("astore_1");
     }
-    //x.tAST.accept(this);
-    //x.idAST.accept(this);
+    x.tAST.accept(this);
+    x.idAST.accept(this);
     x.stmtAST.accept(this);
     emitLabel(L1);
     if(isMain) {
@@ -521,7 +520,8 @@ public class Emitter implements Visitor {
   }
 
   public void visit(FormalParamDecl x) {
-    //emit("; FormalParamDecl");
+    emit("; FormalParamDecl");
+    x.index = frame.getNewLocalVarIndex();
     //TBD: here you need to allocate a new local variable index to the
     //     formal parameter.
     //     Relevant: x.index, frame.getNewLocalVarIndex();
